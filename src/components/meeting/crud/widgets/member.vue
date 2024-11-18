@@ -307,57 +307,57 @@ export default {
     })
 
     function getPeople(){
-      people.value = store.getters['meetingPeople/records'].all
-      // store.dispatch( props.model.name+'People'+'/list',{
-      //   search : peopleSearch.value ,
-      //   perPage : 50 ,
-      //   page : 1
-      // }).then( res => {
-      //   if( res.data.records.length > 0 ){
-      //     people.value = res.data.records
-      //   }else{
-      //     notify.warning({
-      //       'title' : 'សមាជិកប្រជុំ' ,
-      //       'description' : 'មិនមានសមាជិកប្រជុំ។' ,
-      //       duration : 3000
-      //     })
-      //   }
+      // people.value = store.getters['meetingPeople/records'].all
+      store.dispatch( props.model.name+'People'+'/list',{
+        search : peopleSearch.value ,
+        perPage : 50 ,
+        page : 1
+      }).then( res => {
+        if( res.data.records.length > 0 ){
+          people.value = res.data.records
+        }else{
+          notify.warning({
+            'title' : 'សមាជិកប្រជុំ' ,
+            'description' : 'មិនមានសមាជិកប្រជុំ។' ,
+            duration : 3000
+          })
+        }
         
-      // }).catch( err => {
-      //   console.log( err )
-      //   notify.error({
-      //     'title' : 'សមាជិកប្រជុំ' ,
-      //     'description' : 'មានបញ្ហាក្នុងពេលស្វែងរកសមាជិកប្រជុំ។' ,
-      //     duration : 3000
-      //   })
-      // })
+      }).catch( err => {
+        console.log( err )
+        notify.error({
+          'title' : 'សមាជិកប្រជុំ' ,
+          'description' : 'មានបញ្ហាក្នុងពេលស្វែងរកសមាជិកប្រជុំ។' ,
+          duration : 3000
+        })
+      })
     }
 
     function getPeopleForAttentant(){
       memberAttendantDrawer.people = store.getters['meetingPeople/records'].all
-      // store.dispatch( props.model.name+'/people',{
-      //   search : memberAttendantDrawer.peopleSearch ,
-      //   perPage : 50 ,
-      //   page : 1
-      // }).then( res => {
-      //   if( res.data.records.length > 0 ){
-      //     memberAttendantDrawer.people = res.data.records
-      //   }else{
-      //     notify.warning({
-      //       'title' : 'សមាជិកប្រជុំ' ,
-      //       'description' : 'មិនមានសមាជិកប្រជុំ។' ,
-      //       duration : 3000
-      //     })
-      //   }
+      store.dispatch( props.model.name+'/people',{
+        search : memberAttendantDrawer.peopleSearch ,
+        perPage : 50 ,
+        page : 1
+      }).then( res => {
+        if( res.data.records.length > 0 ){
+          memberAttendantDrawer.people = res.data.records
+        }else{
+          notify.warning({
+            'title' : 'សមាជិកប្រជុំ' ,
+            'description' : 'មិនមានសមាជិកប្រជុំ។' ,
+            duration : 3000
+          })
+        }
         
-      // }).catch( err => {
-      //   console.log( err )
-      //   notify.error({
-      //     'title' : 'សមាជិកប្រជុំ' ,
-      //     'description' : 'មានបញ្ហាក្នុងពេលស្វែងរកសមាជិកប្រជុំ។' ,
-      //     duration : 3000
-      //   })
-      // })
+      }).catch( err => {
+        console.log( err )
+        notify.error({
+          'title' : 'សមាជិកប្រជុំ' ,
+          'description' : 'មានបញ្ហាក្នុងពេលស្វែងរកសមាជិកប្រជុំ។' ,
+          duration : 3000
+        })
+      })
     }
 
     /**

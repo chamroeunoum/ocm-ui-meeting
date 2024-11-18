@@ -2,14 +2,14 @@
   <div class="relative " >
     <!-- Table of crud -->
     <div class="fixed left-0 top-12 right-0 bottom-12 vcb-table-panel">
-      <div class="vcb-meeting-timestamp flex flex-wrap justify-center items-center w-full mb-8 bg-white border border-gray-200 p-2" >
+      <!-- <div class="vcb-meeting-timestamp flex flex-wrap justify-center items-center w-full mb-8 bg-white border border-gray-200 p-2" > -->
         <!-- <div class="p-1 px-4 rounded shadow-sm m-1 cursor-pointer duration-300 hover:border-yellow-300 hover:text-yellow-800 border border-gray-200" >១ ខែមុន</div>
         <div class="p-1 px-4 rounded shadow-sm m-1 cursor-pointer duration-300 hover:border-yellow-300 hover:text-yellow-800 border border-gray-200" >១ សប្ដាហ៍មុន</div>
         <div class="p-1 px-4 rounded shadow-sm m-1 cursor-pointer duration-300 hover:border-yellow-300 hover:text-yellow-800 border border-gray-200" >ថ្ងៃនេះ</div>
         <div class="p-1 px-4 rounded shadow-sm m-1 cursor-pointer duration-300 hover:border-yellow-300 hover:text-yellow-800 border border-gray-200" >១ សប្ដាហ៍បន្ទាប់</div>
         <div class="p-1 px-4 rounded shadow-sm m-1 cursor-pointer duration-300 hover:border-yellow-300 hover:text-yellow-800 border border-gray-200" >១ ខែបន្ទាប់</div> -->
         <!-- Status filter dropdown list-->
-        <div class="item" >
+        <!-- <div class="item" >
           <n-select 
             @update:value="updateStatus"
             placeholder="ស្ថានភាពកិច្ចប្រជុំ"
@@ -17,9 +17,9 @@
             multiple
           >
           </n-select>
-        </div>
+        </div> -->
         <!-- Type filter dropdown list-->
-        <div class="item" >
+        <!-- <div class="item" >
           <n-select 
             @update:value="updateType"
             placeholder="ប្រភេទកិច្ចប្រជុំ"
@@ -27,9 +27,9 @@
             multiple
           >
           </n-select>
-        </div>
+        </div> -->
         <!-- Organization filter dropdown list-->
-        <div class="item" >
+        <!-- <div class="item" >
           <n-select 
             @update:value="updateOrganization"
             placeholder="ក្រសួង ស្ថាប័ន"
@@ -38,9 +38,9 @@
             filterable
           >
           </n-select>
-        </div>
+        </div> -->
         <!-- Meeting member filter dropdown list-->
-        <div class="item" >
+        <!-- <div class="item" >
           <n-select 
             @update:value="updatePeople"
             placeholder="សមាសភាពអង្គប្រជុំ"
@@ -49,9 +49,9 @@
             filterable
           >
           </n-select>
-        </div>
+        </div> -->
         <!-- Meeting room filter dropdown list-->
-        <div class="item" >
+        <!-- <div class="item" >
           <n-select 
             @update:value="updateRoom"
             placeholder="សាលប្រជុំ"
@@ -60,17 +60,17 @@
             filterable
           >
           </n-select>
-        </div>
+        </div> -->
         <!-- Type filter dropdown list-->
-        <div class="item" >
+        <!-- <div class="item" >
           <n-date-picker 
           clearable
           v-model:value="selectedDate" 
           @update:value="updateDate" 
           placeholder="បរិច្ឆែទប្រជុំ"
           type="date" />
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
       <Transition name="slide-fade" >
         <div v-if="Array.isArray( records ) && records.length > 0 " class="vcb-thumbnail mb-24" >
           <div v-for="(record, index) in records" :key='index' class="item " >
@@ -200,8 +200,68 @@
         </n-tooltip>
         <div class="filter-title font-moul" >សូមជ្រើសរើសលក្ខណ សម្រង់ទិន្នន័យ៖</div>
         <div class="filter-actions" >
-          <div class="filter-action" >លក្ខណចម្រោះទី ១</div>
-          <div class="filter-action" >លក្ខណចម្រោះទី ២</div>
+          <!-- Status filter dropdown list-->
+          <div class="filter-action" >
+            <n-select 
+              @update:value="updateStatus"
+              placeholder="ស្ថានភាពកិច្ចប្រជុំ"
+              :options="statuses"
+              multiple
+            >
+            </n-select>
+          </div>
+          <!-- Type filter dropdown list-->
+          <div class="filter-action" >
+            <n-select 
+              @update:value="updateType"
+              placeholder="ប្រភេទកិច្ចប្រជុំ"
+              :options="types"
+              multiple
+            >
+            </n-select>
+          </div>
+          <!-- Organization filter dropdown list-->
+          <div class="filter-action" >
+            <n-select 
+              @update:value="updateOrganization"
+              placeholder="ក្រសួង ស្ថាប័ន"
+              :options="organizations"
+              multiple
+              filterable
+            >
+            </n-select>
+          </div>
+          <!-- Meeting member filter dropdown list-->
+          <div class="filter-action" >
+            <n-select 
+              @update:value="updatePeople"
+              placeholder="សមាសភាពអង្គប្រជុំ"
+              :options="people"
+              multiple
+              filterable
+            >
+            </n-select>
+          </div>
+          <!-- Meeting room filter dropdown list-->
+          <div class="filter-action" >
+            <n-select 
+              @update:value="updateRoom"
+              placeholder="សាលប្រជុំ"
+              :options="rooms"
+              multiple
+              filterable
+            >
+            </n-select>
+          </div>
+          <!-- Type filter dropdown list-->
+          <div class="filter-action" >
+            <n-date-picker 
+            clearable
+            v-model:value="selectedDate" 
+            @update:value="updateDate" 
+            placeholder="បរិច្ឆែទប្រជុំ"
+            type="date" />
+          </div>
         </div>
       </div>
     </Transition>
@@ -231,7 +291,7 @@
             សូមបញ្ចូលពាក្យគន្លឹះដើម្បីស្វែងរក
           </n-tooltip>
         </div>
-        <!-- <div class="ml-2 flex flex-wrap">
+        <div class="ml-2 flex flex-wrap">
           <n-tooltip trigger="hover">
             <template #trigger>
               <svg 
@@ -241,7 +301,18 @@
             </template>
             សម្រង់ទិន្នន័យ
           </n-tooltip>
-        </div> -->
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <router-link target='_blank' to="tvsony43" >
+                <svg 
+                class="mx-2 w-8 h-8 p-1 bg-white cursor-pointer text-blue-500 duration-300"
+                @click="$router.push('/tvsony43')" 
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path data-v-781535bd="" d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V6c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v10z" fill="currentColor"></path></svg>
+              </router-link>
+            </template>
+            កាលវិភាគប្រជុំ
+          </n-tooltip>
+        </div>
       </div>
     </div>
     <!-- Form create account -->
@@ -658,7 +729,7 @@ export default {
   @apply text-blue-600 leading-7 p-1 mx-1 ;
 }
 .vcb-filters-panel {
-  @apply fixed left-0 top-0 right-0 bottom-0 bg-opacity-90 p-12 bg-gray-100;
+  @apply fixed left-0 top-12 right-0 bottom-0 bg-opacity-90 p-12 bg-gray-100;
 }
 .vcb-filters-panel .filter-title {
   @apply w-full text-left ;

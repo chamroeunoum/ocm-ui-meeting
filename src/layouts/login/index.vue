@@ -63,10 +63,10 @@
   </div>
 </template>
 <script>
-import { getUser } from './../../plugins/authentication'
-import { getMaxUploadFilesize, setMaxUploadFilesize } from './../../plugins/file'
-import { getRoutes } from './../../plugins/route'
-import FooterComponent from './../../components/footer/copy-right.vue'
+import { getUser } from '@plugins/authentication'
+import { getMaxUploadFilesize, setMaxUploadFilesize } from '@plugins/file'
+import { getRoutes } from '@plugins/route'
+import FooterComponent from '@components/footer/copy-right.vue'
 import { ref, reactive , onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -106,7 +106,7 @@ export default {
       if( credentials.email == "" || credentials.email == null ){
         message.warning("សូមបញ្ចូលអ៊ីមែលរបស់អ្នក រួចព្យាយាមម្ដងទៀត បាទ។")
         return false
-      }
+      }"Thank you for your hard work today"
       if( credentials.password == "" || credentials.password == null ){
         message.warning("សូមបញ្ចូលពាក្យសម្ងាត់របស់អ្នក រួចព្យាយាមម្ដងទៀត បាទ។")
         return false

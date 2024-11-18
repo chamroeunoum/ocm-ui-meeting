@@ -95,15 +95,27 @@
                   <n-form-item label="កម្មវត្ថុ" path="objective" class="w-4/5 mr-8" >
                     <n-input type="textarea" v-model:value="record.objective" placeholder="កម្មវត្ថុ" />
                   </n-form-item>
-                  <n-form-item label="ព័ទ៌មានទំនាក់ទំនង" path="contact_info" class="w-4/5 mr-8" >
-                    <n-input type="textarea" v-model:value="record.contact_info" placeholder="ព័ទ៌មានទំនាក់ទំនង" />
+                  
+                  <n-form-item label="សង្ខេបបឋមនៃកិច្ចប្រជុំ" path="summary" class="w-4/5 mr-8" >
+                    <n-input type="textarea" v-model:value="record.summary" placeholder="សង្ខេបបឋមនៃកិច្ចប្រជុំ" />
                   </n-form-item>
+                  <!-- <n-form-item label="ព័ទ៌មានទំនាក់ទំនង" path="contact_info" class="w-4/5 mr-8" >
+                    <n-input type="textarea" v-model:value="record.contact_info" placeholder="ព័ទ៌មានទំនាក់ទំនង" />
+                  </n-form-item> -->
                   <n-form-item label="ប្រភេទប្រជុំ" path="type" class="w-4/5 mr-8" >
                     <n-select
                       v-model:value="selectedType"
                       filterable
                       placeholder="សូមជ្រើសរើសប្រភេទប្រជុំ"
                       :options="types"
+                    />
+                  </n-form-item>
+                  <n-form-item label="ប្រភព" path="organization" class="w-4/5 mr-8" >
+                    <n-select
+                      v-model:value="selectedOrganization"
+                      filterable
+                      placeholder="សូមជ្រើសរើសប្រភព​"
+                      :options="organizations"
                     />
                   </n-form-item>
                 </n-form>
@@ -150,6 +162,7 @@ export default {
           contact_info: '' ,
           date: new Date() ,
           start: null ,
+          summary: '' ,
           end : null ,
           type_id: null
         })
@@ -171,11 +184,18 @@ export default {
     const btnSavingLoadingRef = ref(false)
 
     const types = computed( () => {
-      return store.getters['type/getRecords'].map( ( o ) => { 
+      return store.getters['meetingType/records'].all.map( ( o ) => { 
         return { label: o.name , value: o.id } 
       })
     })
     const selectedType = ref([])
+
+    const organizations = computed( () => {
+      return store.getters['meetingOrganization/records'].all.map( ( o ) => { 
+        return { label: o.name , value: o.id } 
+      })
+    })
+    const selectedOrganization = ref([])
 
     const today = ref( new Date() )
 
@@ -276,7 +296,9 @@ export default {
           start: props.record.start ,
           end: props.record.end ,
           type_id: props.record.type_id ,
-          contact_info : props.record.contact_info
+          contact_info : props.record.contact_info ,
+          summary : props.record.summary ,
+          organizations: selectedOrganization.value
         },
         ( res ) => {
           switch( res.status ){
@@ -323,7 +345,9 @@ export default {
       btnSavingLoadingRef ,
       meetingDateTime ,
       selectedType ,
-      types
+      types ,
+      organizations ,
+      selectedOrganization
     }
   }
 }
