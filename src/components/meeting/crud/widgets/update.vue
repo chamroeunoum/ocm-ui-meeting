@@ -203,7 +203,7 @@ export default {
         return { label: o.name , value: o.id } 
       })
     })
-    const selectedOrganization = ref([])
+    const selectedOrganization = ref(null)
 
     const today = ref( new Date() )
 
@@ -339,13 +339,16 @@ export default {
     function closeModal(){
       console.log( props.show )
       if( props.show == true ){
-        props.onClose()
+        props.onClose( 1 )
       }
     }
 
     function initial(){
       selectedType.value = props.record.type_id > 0 ? props.record.type_id : null
-      selectedOrganization.value = props.record.organizations != undefined && props.record.organizations.length > 0 ? props.record.organizations : null
+      if( props.record.organizations != undefined && props.record.organizations.length > 0 ) {
+        selectedOrganization.value = null
+        for( var i in props.record.organizations ) selectedOrganization.value = props.record.organizations[i].id 
+      }
       today.value = props.record.date ? new Date( props.record.date ) : new Date()
       meetingDateTime.year = parseInt( dateFormat( today.value , 'yyyy') ) ,
       meetingDateTime.month = parseInt( dateFormat( today.value , 'mm') ) ,

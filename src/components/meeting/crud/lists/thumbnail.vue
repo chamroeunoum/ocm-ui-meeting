@@ -476,7 +476,7 @@ export default {
         color: 'text-gray-200'
       },
       {
-        label: 'ថ្មី' ,
+        label: 'មិនទាន់ប្រជុំ',
         value : 1 ,
         color: ' text-blue-600 ' 
       } ,

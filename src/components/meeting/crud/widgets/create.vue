@@ -188,14 +188,14 @@ export default {
         return { label: o.name , value: o.id } 
       })
     })
-    const selectedType = ref([])
+    const selectedType = ref(null)
 
     const organizations = computed( () => {
       return store.getters['meetingOrganization/records'].all.map( ( o ) => { 
         return { label: o.name , value: o.id } 
       })
     })
-    const selectedOrganization = ref([])
+    const selectedOrganization = ref()
 
     const today = ref( new Date() )
 
@@ -271,13 +271,8 @@ export default {
       props.record.date = [meetingDateTime.year,meetingDateTime.month,meetingDateTime.day].join('-')
       props.record.start = [meetingDateTime.start.hour,meetingDateTime.start.minutes].join(':')
       props.record.end = [meetingDateTime.end.hour,meetingDateTime.end.minutes].join(':')
-      props.record.type_id = Array.isArray( selectedType.value ) && selectedType.value.length > 0 
-        ? selectedType.value[0] 
-        : (
-          parseInt( selectedType.value ) > 0 
-            ? parseInt( selectedType.value )
-            : 0
-        )
+      props.record.type_id = selectedType.value > 0 ? selectedType.value : 0
+      props.record.organizations = selectedOrganization.value > 0 ? selectedOrganization.value : 0
       
       if( props.model === undefined || props.model.name == "" ){
         notify.warning({
@@ -298,7 +293,7 @@ export default {
           type_id: props.record.type_id ,
           contact_info : props.record.contact_info ,
           summary : props.record.summary ,
-          organizations: selectedOrganization.value
+          organizations: props.record.organizations
         },
         ( res ) => {
           switch( res.status ){
@@ -322,7 +317,7 @@ export default {
     }
     
     function maskOrEscClick(){
-      props.onClose( 0 )
+      props.onClose( 1 )
     }
     function initial(){
       store.commit( props.model.name+"/setColumns", [ 'id' , 'name' ] )

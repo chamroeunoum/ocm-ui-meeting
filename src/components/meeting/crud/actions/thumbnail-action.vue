@@ -14,7 +14,7 @@
           </template>
           រូបតំណាង
         </n-tooltip> -->
-        <n-tooltip trigger="hover">
+        <!-- <n-tooltip trigger="hover">
           <template #trigger>
             <div class="action-board" >
               <svg class="action text-blue-500" @click="showReportModal(record)" 
@@ -23,8 +23,8 @@
             </div>
           </template>
           របាយការណ៍សរុបអង្គប្រជុំ
-        </n-tooltip>
-        <n-tooltip trigger="hover">
+        </n-tooltip> -->
+        <!-- <n-tooltip trigger="hover">
           <template #trigger>
             <div class="action-board" >
               <svg class="action text-blue-500" @click="showTechReportModal(record)" 
@@ -33,16 +33,16 @@
             </div>
           </template>
           របាយការណ៍បច្ចេកទេស
-        </n-tooltip>
+        </n-tooltip> -->
         <n-tooltip trigger="hover">
           <template #trigger>
             <div class="action-board" >
-              <svg class="action text-red-500" @click="showRegulatorModal(record)" 
-              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024"><path d="M531.3 574.4l.3-1.4c5.8-23.9 13.1-53.7 7.4-80.7c-3.8-21.3-19.5-29.6-32.9-30.2c-15.8-.7-29.9 8.3-33.4 21.4c-6.6 24-.7 56.8 10.1 98.6c-13.6 32.4-35.3 79.5-51.2 107.5c-29.6 15.3-69.3 38.9-75.2 68.7c-1.2 5.5.2 12.5 3.5 18.8c3.7 7 9.6 12.4 16.5 15c3 1.1 6.6 2 10.8 2c17.6 0 46.1-14.2 84.1-79.4c5.8-1.9 11.8-3.9 17.6-5.9c27.2-9.2 55.4-18.8 80.9-23.1c28.2 15.1 60.3 24.8 82.1 24.8c21.6 0 30.1-12.8 33.3-20.5c5.6-13.5 2.9-30.5-6.2-39.6c-13.2-13-45.3-16.4-95.3-10.2c-24.6-15-40.7-35.4-52.4-65.8zM421.6 726.3c-13.9 20.2-24.4 30.3-30.1 34.7c6.7-12.3 19.8-25.3 30.1-34.7zm87.6-235.5c5.2 8.9 4.5 35.8.5 49.4c-4.9-19.9-5.6-48.1-2.7-51.4c.8.1 1.5.7 2.2 2zm-1.6 120.5c10.7 18.5 24.2 34.4 39.1 46.2c-21.6 4.9-41.3 13-58.9 20.2c-4.2 1.7-8.3 3.4-12.3 5c13.3-24.1 24.4-51.4 32.1-71.4zm155.6 65.5c.1.2.2.5-.4.9h-.2l-.2.3c-.8.5-9 5.3-44.3-8.6c40.6-1.9 45 7.3 45.1 7.4zm191.4-388.2L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0 0 42 42h216v494z" fill="currentColor"></path></svg>
-              <div class="action-label" >ឯកសារគតិយុត្ត</div>
+              <svg class="action text-red-500" @click="showOthersDocumentModal(record)" 
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path data-v-dbedf028="" d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2c-.28 0-.5-.22-.5-.5v-5c0-.28.22-.5.5-.5h2c.83 0 1.5.67 1.5 1.5v3zm4-3.75c0 .41-.34.75-.75.75H19v1h.75c.41 0 .75.34.75.75s-.34.75-.75.75H19v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1h1.25c.41 0 .75.34.75.75zM9 9.5h1v-1H9v1zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1zm11 5.5h1v-3h-1v3z" fill="currentColor"></path></svg>
+              <div class="action-label" >ឯកសារយោងផ្សេងទៀត</div>
             </div>
           </template>
-          ឯកសារគតិយុត្ត
+          ឯកសារយោងផ្សេងទៀត
         </n-tooltip>
         <n-tooltip trigger="hover">
           <template #trigger>
@@ -57,12 +57,22 @@
         <n-tooltip trigger="hover">
           <template #trigger>
             <div class="action-board" >
-              <svg class="action text-red-500" @click="showOthersDocumentModal(record)" 
-                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2c-.28 0-.5-.22-.5-.5v-5c0-.28.22-.5.5-.5h2c.83 0 1.5.67 1.5 1.5v3zm4-3.75c0 .41-.34.75-.75.75H19v1h.75c.41 0 .75.34.75.75s-.34.75-.75.75H19v1.25c0 .41-.34.75-.75.75s-.75-.34-.75-.75V8c0-.55.45-1 1-1h1.25c.41 0 .75.34.75.75zM9 9.5h1v-1H9v1zM3 6c-.55 0-1 .45-1 1v13c0 1.1.9 2 2 2h13c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1-.45-1-1V7c0-.55-.45-1-1-1zm11 5.5h1v-3h-1v3z" fill="currentColor"></path></svg>
-              <div class="action-label" >យោងសេចក្ដីព្រាង</div>
+              <svg class="action text-red-500" @click="showMinisterPrengModal(record)" 
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024"><path d="M531.3 574.4l.3-1.4c5.8-23.9 13.1-53.7 7.4-80.7c-3.8-21.3-19.5-29.6-32.9-30.2c-15.8-.7-29.9 8.3-33.4 21.4c-6.6 24-.7 56.8 10.1 98.6c-13.6 32.4-35.3 79.5-51.2 107.5c-29.6 15.3-69.3 38.9-75.2 68.7c-1.2 5.5.2 12.5 3.5 18.8c3.7 7 9.6 12.4 16.5 15c3 1.1 6.6 2 10.8 2c17.6 0 46.1-14.2 84.1-79.4c5.8-1.9 11.8-3.9 17.6-5.9c27.2-9.2 55.4-18.8 80.9-23.1c28.2 15.1 60.3 24.8 82.1 24.8c21.6 0 30.1-12.8 33.3-20.5c5.6-13.5 2.9-30.5-6.2-39.6c-13.2-13-45.3-16.4-95.3-10.2c-24.6-15-40.7-35.4-52.4-65.8zM421.6 726.3c-13.9 20.2-24.4 30.3-30.1 34.7c6.7-12.3 19.8-25.3 30.1-34.7zm87.6-235.5c5.2 8.9 4.5 35.8.5 49.4c-4.9-19.9-5.6-48.1-2.7-51.4c.8.1 1.5.7 2.2 2zm-1.6 120.5c10.7 18.5 24.2 34.4 39.1 46.2c-21.6 4.9-41.3 13-58.9 20.2c-4.2 1.7-8.3 3.4-12.3 5c13.3-24.1 24.4-51.4 32.1-71.4zm155.6 65.5c.1.2.2.5-.4.9h-.2l-.2.3c-.8.5-9 5.3-44.3-8.6c40.6-1.9 45 7.3 45.1 7.4zm191.4-388.2L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0 0 42 42h216v494z" fill="currentColor"></path></svg>
+              <div class="action-label" >សេចក្ដីព្រាងរដ្ឋមន្ត្រី</div>
             </div>
           </template>
-          យោងសេចក្ដីព្រាង
+          សេចក្ដីព្រាងរដ្ឋមន្ត្រី
+        </n-tooltip>
+        <n-tooltip trigger="hover">
+          <template #trigger>
+            <div class="action-board" >
+              <svg class="action text-red-500" @click="showRegulatorModal(record)" 
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024"><path d="M531.3 574.4l.3-1.4c5.8-23.9 13.1-53.7 7.4-80.7c-3.8-21.3-19.5-29.6-32.9-30.2c-15.8-.7-29.9 8.3-33.4 21.4c-6.6 24-.7 56.8 10.1 98.6c-13.6 32.4-35.3 79.5-51.2 107.5c-29.6 15.3-69.3 38.9-75.2 68.7c-1.2 5.5.2 12.5 3.5 18.8c3.7 7 9.6 12.4 16.5 15c3 1.1 6.6 2 10.8 2c17.6 0 46.1-14.2 84.1-79.4c5.8-1.9 11.8-3.9 17.6-5.9c27.2-9.2 55.4-18.8 80.9-23.1c28.2 15.1 60.3 24.8 82.1 24.8c21.6 0 30.1-12.8 33.3-20.5c5.6-13.5 2.9-30.5-6.2-39.6c-13.2-13-45.3-16.4-95.3-10.2c-24.6-15-40.7-35.4-52.4-65.8zM421.6 726.3c-13.9 20.2-24.4 30.3-30.1 34.7c6.7-12.3 19.8-25.3 30.1-34.7zm87.6-235.5c5.2 8.9 4.5 35.8.5 49.4c-4.9-19.9-5.6-48.1-2.7-51.4c.8.1 1.5.7 2.2 2zm-1.6 120.5c10.7 18.5 24.2 34.4 39.1 46.2c-21.6 4.9-41.3 13-58.9 20.2c-4.2 1.7-8.3 3.4-12.3 5c13.3-24.1 24.4-51.4 32.1-71.4zm155.6 65.5c.1.2.2.5-.4.9h-.2l-.2.3c-.8.5-9 5.3-44.3-8.6c40.6-1.9 45 7.3 45.1 7.4zm191.4-388.2L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0 0 42 42h216v494z" fill="currentColor"></path></svg>
+              <div class="action-label" >ឯកសារគតិយុត្ត</div>
+            </div>
+          </template>
+          ឯកសារគតិយុត្ត
         </n-tooltip>
         <n-tooltip trigger="hover">
           <template #trigger>
@@ -112,7 +122,7 @@
           </template>
           បិទ និង បើក ព័ត៌មាន
         </n-tooltip>  
-        <n-tooltip trigger="hover">
+        <n-tooltip v-if="user!=null && user!=undefined && user.id == record.created_by" trigger="hover">
           <template #trigger>
             <div class="action-board" >
               <svg class="action text-red-500" @click="deleteAccount(record)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><path d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M80 112h352" fill="currentColor"></path><path d="M192 112V72h0a23.93 23.93 0 0 1 24-24h80a23.93 23.93 0 0 1 24 24h0v40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 176v224"></path><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M184 176l8 224"></path><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M328 176l-8 224"></path></svg>              
@@ -141,11 +151,19 @@
     </n-tooltip>
     <n-tooltip v-if="!show" trigger="hover">
       <template #trigger>
-        <div :class=" 'record-status ' + ( parseInt( record.active ) == 1 ? ' text-green-500 ' : ' text-gray-500 ') " @click="toggleActions" >
+        <div :class=" 'record-active ' + ( parseInt( record.active ) == 1 ? ' text-green-500 ' : ' text-gray-500 ') " @click="toggleActions" >
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024"><path d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z" fill="currentColor"></path><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372s372 166.6 372 372s-166.6 372-372 372z" fill="currentColor"></path></svg>
         </div>
       </template>
       ស្ថានភាពព័ត៌មាន ៖ {{ ( parseInt( record.active ) == 1 ? ' កំពុងប្រើប្រាស់ ' : ' បិទការប្រើប្រាស់ ') }}
+    </n-tooltip>
+    <n-tooltip v-if="!show && record.summary != undefined && record.summary != null && record.summary.length > 0" trigger="hover">
+      <template #trigger>
+        <div class="record-summary text-blue-500" >
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 28"><g data-v-dbedf028="" fill="none"><path data-v-dbedf028="" d="M8 10.25a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10a.75.75 0 0 1-.75-.75zm0 4.5a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10a.75.75 0 0 1-.75-.75zm.75 3.75a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM14 2a.75.75 0 0 1 .75.75V4h3.75V2.75a.75.75 0 0 1 1.5 0V4h.75A2.25 2.25 0 0 1 23 6.25v12.996a.75.75 0 0 1-.22.53l-5.504 5.504a.75.75 0 0 1-.53.22H6.75a2.25 2.25 0 0 1-2.25-2.25v-17A2.25 2.25 0 0 1 6.75 4H8V2.75a.75.75 0 0 1 1.5 0V4h3.75V2.75A.75.75 0 0 1 14 2zM6 6.25v17c0 .414.336.75.75.75h9.246v-3.254a2.25 2.25 0 0 1 2.25-2.25H21.5V6.25a.75.75 0 0 0-.75-.75h-14a.75.75 0 0 0-.75.75zm12.246 13.746a.75.75 0 0 0-.75.75v2.193l2.943-2.943h-2.193z" fill="currentColor"></path></g></svg>
+        </div>
+      </template>
+      {{ record.summary }}
     </n-tooltip>
     <n-tooltip v-if="!show && record.pdf == true" trigger="hover">
       <template #trigger>
@@ -154,6 +172,14 @@
         </div>
       </template>
       ឯកសារយោង
+    </n-tooltip>
+    <n-tooltip v-if="!show" trigger="hover">
+      <template #trigger>
+        <div :class=" ' record-status text-xxs font-bold ' + ( statuses.find( s => s.value == record.status ).color ) " >
+          {{ statuses.find( s => s.value == record.status ).label }}
+        </div>
+      </template>
+      ស្ថានភាពប្រជុំ
     </n-tooltip>
     <!-- Form update account -->
     <update-form v-bind:model="model" v-bind:record="record" v-bind:show="editModal.show" :onClose="closeUpdate"/>
@@ -169,6 +195,8 @@
     <regulator-form v-bind:model="model" v-bind:record="record" v-bind:show="regulatorModal.show" :onClose="closeRegulator"/>
     <!-- Form preng -->
     <preng-form v-bind:model="model" v-bind:record="record" v-bind:show="prengModal.show" :onClose="closePreng"/>
+    <!-- Form minister preng -->
+    <minister-preng-form v-bind:model="model" v-bind:record="record" v-bind:show="ministerPrengModal.show" :onClose="closeMinisterPreng"/>
     <!-- Form others document -->
     <others-document-form v-bind:model="model" v-bind:record="record" v-bind:show="othersDocumentModal.show" :onClose="closeOthersDocument"/>
     <!-- Form others document -->
@@ -192,11 +220,13 @@ import PdfForm from './../widgets/pdf.vue'
 import MemberForm from './../widgets/member.vue'
 import RegulatorForm from './../widgets/regulator.vue'
 import PrengForm from './../widgets/preng.vue'
+import MinisterPrengForm from './../widgets/ministerpreng.vue'
 import OthersDocumentForm from './../widgets/othersdocument.vue'
 import PdfPreviewForm from './../widgets/pdfpreview.vue'
 import ReportForm from './../widgets/report.vue'
 import TechReportForm from './../widgets/techreport.vue'
 import RoomForm from './../widgets/room.vue'
+import { getUser } from '@plugins/authentication'
 /**
  * CRUD component form
  */
@@ -211,6 +241,7 @@ export default {
     PdfForm ,
     PdfPreviewForm ,
     PrengForm ,
+    MinisterPrengForm ,
     OthersDocumentForm ,
     ReportForm ,
     TechReportForm ,
@@ -240,6 +271,46 @@ export default {
     const message = useMessage()
     const notify = useNotification()
     
+    const user = ref( getUser() )
+
+    const statuses = reactive([
+      {
+        label: 'ទាំងអស់' ,
+        value : null ,
+        color: 'text-gray-200'
+      },
+      {
+        label: 'មិនទាន់ប្រជុំ' ,
+        value : 1 ,
+        color: ' text-blue-600 ' 
+      } ,
+      {
+        label: 'កំពុងប្រជុំ' ,
+        value : 2 ,
+        color: ' text-green-600' 
+      } ,
+      {
+        label: 'នៅបន្ត' ,
+        value : 4 ,
+        color: ' text-yellow-600' 
+      } ,
+      {
+        label: 'ប្ដូរ' ,
+        value : 8 ,
+        color: ' text-pink-600' 
+      } ,
+      {
+        label: 'ពន្យាពេល' ,
+        value : 16 ,
+        color: ' text-brown-600' 
+      } ,
+      {
+        label: 'ចប់' ,
+        value : 32 ,
+        color: ' text-gray-600' 
+      }
+    ])
+
     const show = ref(false)
     function toggleActions( actionStatus ){
       show.value = !show.value
@@ -376,6 +447,17 @@ export default {
       if( parseInt( actionStatus ) > 0 ) props.onClose( actionStatus )
     }
 
+    var ministerPrengModal = reactive({show:false})
+    function showMinisterPrengModal(record){
+      ministerPrengModal.show = true
+      show.value = false
+    }
+
+    function closeMinisterPreng(actionStatus){
+      ministerPrengModal.show = false
+      if( parseInt( actionStatus ) > 0 ) props.onClose( actionStatus )
+    }
+
     var othersDocumentModal = reactive({show:false})
     function showOthersDocumentModal(record){
       othersDocumentModal.show = true
@@ -507,6 +589,12 @@ export default {
       showPrengModal ,
       closePreng ,
       /**
+       * Minister Preng
+       */
+      ministerPrengModal ,
+      showMinisterPrengModal ,
+      closeMinisterPreng ,
+      /**
        * Other documents
        */
       othersDocumentModal ,
@@ -537,21 +625,30 @@ export default {
       deleteAccount ,
       toggleActions ,
       show ,
-      closeActions
+      closeActions ,
+      // Meeting status
+      statuses ,
+      user
     }
   }
 }
 
 </script>
 <style type="text/css" scoped >
- .actions {
+.actions {
   @apply flex flex-wrap justify-center absolute left-0 top-0 right-0 bottom-0;
 }
- .actions .action-toggle {
+.actions .action-toggle {
   @apply absolute top-1 right-1 w-6 h-6 p-1 rounded-full cursor-pointer ;
 }
- .actions .record-status {
+.actions .record-active {
   @apply absolute bottom-1 left-1 w-6 h-6 cursor-pointer ;
+}
+.actions .record-status {
+  @apply absolute bottom-0 right-0 p-2 px-4 rounded-tl-md cursor-pointer bg-gray-100 shadow-inner;
+}
+.actions .record-summary {
+  @apply absolute bottom-1 left-9 w-6 h-6 cursor-pointer ;
 }
  .actions .record-pdf {
   @apply absolute bottom-1 left-9 w-6 h-6 cursor-pointer ;

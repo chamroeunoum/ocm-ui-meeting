@@ -110,9 +110,11 @@ const actions = {
   async updateMemberGroupAndRole ({ state, commit, rootState },params) {
     return await crud.create(state.server+"/"+state.model.module+"/update_group_role",params)
   },
+  /** Regulator */
   async readRegulator ({ state, commit, rootState },params) {
     return await crud.read(state.server+"/regulators/pdf?id="+params.id)
   },
+  /** Report */
   async uploadReports({ state, commit, rootState },formData) {
     return await crud.upload(state.server+"/"+state.model.module+"/upload/reports",formData)
   },
@@ -122,15 +124,57 @@ const actions = {
   async removeReport ({ state, commit, rootState },params) {
     return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/remove/report/"+params.serial)
   },
+  /** Tech Report */
   async uploadTechReports({ state, commit, rootState },formData) {
     return await crud.upload(state.server+"/"+state.model.module+"/upload/techreports",formData)
   },
   async readTechReport ({ state, commit, rootState },params) {
     return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/read/techreport/"+params.serial)
   },
-  async removeReport ({ state, commit, rootState },params) {
+  async removeTechReport ({ state, commit, rootState },params) {
     return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/remove/techreport/"+params.serial)
   },
+  /** Preeng */
+  async uploadSeichdeyPreengs({ state, commit, rootState },formData) {
+    return await crud.upload(state.server+"/"+state.model.module+"/upload/preengs",formData)
+  },
+  async readPreeng ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/read/preeng/"+params.serial)
+  },
+  async removePreeng ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/remove/preeng/"+params.serial)
+  },
+  /** Minister Preeng */
+  async uploadMinisterPreengs({ state, commit, rootState },formData) {
+    return await crud.upload(state.server+"/"+state.model.module+"/upload/ministerpreengs",formData)
+  },
+  async readMinisterPreeng ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/read/ministerpreeng/"+params.serial)
+  },
+  async removeMinisterPreeng ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/remove/ministerpreeng/"+params.serial)
+  },
+  /** Other documents */
+  async uploadOtherDocuments({ state, commit, rootState },formData) {
+    return await crud.upload(state.server+"/"+state.model.module+"/upload/otherdocuments",formData)
+  },
+  async readOtherDocument ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/read/otherdocument/"+params.serial)
+  },
+  async removeOtherDocument ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/remove/otherdocument/"+params.serial)
+  },
+  /** Minister Preeng */
+  async uploadMinisterPreengs({ state, commit, rootState },formData) {
+    return await crud.upload(state.server+"/"+state.model.module+"/upload/ministerpreengs",formData)
+  },
+  async readMinisterPreeng ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/read/ministerpreeng/"+params.serial)
+  },
+  async removeMinisterPreeng ({ state, commit, rootState },params) {
+    return await crud.read(state.server+"/"+state.model.module+"/"+params.id+"/remove/ministerpreeng/"+params.serial)
+  },
+
   async toggleMeetingRoom ({ state, commit, rootState },params) {
     return await crud.update(state.server+"/"+state.model.module+"/"+params.meeting.id+"/room/"+params.room.id+'/toggle')
   },

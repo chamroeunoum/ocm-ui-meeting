@@ -121,7 +121,7 @@ export default {
       }
     }
     function closePdf(){
-      props.onClose()
+      props.onClose( 1 )
       pdf.url = ""
       pdf.viewer = false
 

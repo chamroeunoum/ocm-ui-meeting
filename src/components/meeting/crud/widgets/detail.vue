@@ -178,7 +178,7 @@ export default {
     }
   
     function maskOrEscClick(){
-      props.onClose( 0 )
+      props.onClose( 1 )
     }
 
     function initial(){

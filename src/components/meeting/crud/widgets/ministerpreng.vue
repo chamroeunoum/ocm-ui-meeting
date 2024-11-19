@@ -14,17 +14,17 @@
           </div>
           <!-- Search box -->
           <div class="absolute left-0 top-0 right-0 h-10 p-2 font-moul border-b border-gray-200 leading-7 " >
-            សេចក្ដីព្រាង
+            សេចក្ដីព្រាងរដ្ឋមន្ត្រី
             <svg @click="preengUploadVariables.show=!preengUploadVariables.show" class="w-10 absolute right-0 top-0 cursor-pointer hover:text-blue-600 duration-300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zM8 13h2.55v3h2.9v-3H16l-4-4z" fill="currentColor"></path></svg>
             <n-drawer v-model:show="preengUploadVariables.show" placement="right" :width="500" :onAfterLeave="clearPreengUpload" >
               <n-drawer-content >
                 <template #header >
                   បញ្ចូលសេចក្ដីព្រាង
-                  <div @click="uploadPreengs" class="w-24 h-8 p-2 absolute right-2 top-2 text-center border border-green-600 rounded text-green-700 cursor-pointer " >រក្សារទុក</div>
+                  <div @click="uploadMinisterPreengs" class="w-24 h-8 p-2 absolute right-2 top-2 text-center border border-green-600 rounded text-green-700 cursor-pointer " >រក្សារទុក</div>
                 </template>
                 <input type="file" multiple @change="fileChangePreengs" class="hidden" id="preengs" />
                 <div class="border rounded border-gray-200 w-full text-sm text-center " >
-                  <div class="no-files-upload h-full w-full p-2 cursor-pointer hover:text-green-500 duration-500" @click="clickUploadPreengs" >
+                  <div class="no-files-upload h-full w-full p-2 cursor-pointer hover:text-green-500 duration-500" @click="clickUploadMinisterPreengs" >
                     <svg  class="w-12 mx-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.469 5.469 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3zM8 13h2.55v3h2.9v-3H16l-4-4z" fill="currentColor"></path></svg>
                     <div class="w-full my-2 " >សូមបញ្ចូលសេចក្ដីព្រាង សម្រាប់កិច្ចប្រជុំ</div>
                   </div>
@@ -253,11 +253,11 @@ setup(props){
       }
     })
 
-    function clickUploadPreengs(){
+    function clickUploadMinisterPreengs(){
       document.getElementById('preengs').click()
     }
 
-    function uploadPreengs(){
+    function uploadMinisterPreengs(){
       let formData = new FormData()
       formData.append('id', props.record.id )
       for( var i in preengUploadVariables.files ){
@@ -268,7 +268,7 @@ setup(props){
         description: 'កំពុងបញ្ចូល សេចក្ដីព្រាង។' ,
         duration: 3000
       })
-      store.dispatch('meeting/uploadSeichdeyPreengs', formData )
+      store.dispatch('meeting/uploadMinisterPreengs', formData )
       .then( res => {
         notify.success({
           title: 'រក្សារទុកព័ត៌មាន' ,
@@ -277,8 +277,8 @@ setup(props){
         })
 
         preengUploadVariables.show = false
-        props.record.seichdey_preeng = res.data.record.seichdey_preeng
-        selectedSeichdeyPreengs.value = props.record.seichdey_preeng
+        props.record.minister_preeng = res.data.record.minister_preeng
+        selectedSeichdeyPreengs.value = props.record.minister_preeng
         document.getElementById('preengs').value = []
 
       }).catch( err => {
@@ -371,7 +371,7 @@ setup(props){
     }
 
     function previewSeichdeyPreengs(preeng){
-      store.dispatch('meeting/readPreeng',{
+      store.dispatch('meeting/readMinisterPreeng',{
         id: props.record.id ,
         serial: preeng.serial
       })
@@ -395,13 +395,13 @@ setup(props){
         positiveText: 'បាទ / ចាស',
         negativeText: 'ទេ',
         onPositiveClick: () => {
-          store.dispatch('meeting/removePreeng',{
+          store.dispatch('meeting/removeMinisterPreeng',{
             id: props.record.id ,
             serial: preeng.serial
           })
           .then( res => {
-            props.record.seichdey_preeng = res.data.record.seichdey_preeng
-            selectedSeichdeyPreengs.value = res.data.record.seichdey_preeng
+            props.record.minister_preeng = res.data.record.minister_preeng
+            selectedSeichdeyPreengs.value = res.data.record.minister_preeng
           }).catch( err => {
             console.log( err )
             notify.error({
@@ -437,7 +437,7 @@ setup(props){
   }
 
   function initial(){
-    selectedSeichdeyPreengs.value = props.record.seichdey_preeng != undefined && props.record.seichdey_preeng.length > 0 ? props.record.seichdey_preeng : [] 
+    selectedSeichdeyPreengs.value = props.record.minister_preeng != undefined && props.record.minister_preeng.length > 0 ? props.record.minister_preeng : [] 
   }
 
   return {
@@ -462,9 +462,9 @@ setup(props){
     clearPreengPdf ,
     previewSeichdeyPreengs ,
     fileChangePreengs ,
-    uploadPreengs ,
+    uploadMinisterPreengs ,
     selectedSeichdeyPreengs ,
-    clickUploadPreengs ,
+    clickUploadMinisterPreengs ,
     removeSeichdeyPreeng
   }
 }

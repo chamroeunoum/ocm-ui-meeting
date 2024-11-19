@@ -7,24 +7,10 @@
             <img  src="@assets/logo.png" class="w-full schedule-logo" :style=" ' height: '+ ( headerHeight -  6 ) +'px; width: auto;' " />
           </div>
           <div  class="schedule-caption font-moul font-normal w-full text-left text-gray-50 pl-4
-            xs:text-xs 
-            sm:text-sm 
-            lg:text-lg 
-            xl:text-xl 
-            2xl:text-2xl 
-            3xl:text-3xl 
-            4xl:text-4xl 
             "
             :style="  'line-height: '+( headerHeight - 6 )+'px;' "
             >កាលវិភាគកិច្ចប្រជុំប្រចាំ {{ full_date }}</div>
           <digital-clock dgClass="digital-clock font-moul font-normal text-left text-gray-50 px-2
-            xs:text-xs 
-            sm:text-sm 
-            lg:text-lg 
-            xl:text-xl 
-            2xl:text-2xl 
-            3xl:text-3xl 
-            4xl:text-4xl 
             "
             :style="  'line-height: '+( headerHeight - 6 )+'px;' " />
         </div>
@@ -33,157 +19,66 @@
         </div> -->
       </div>
       <div 
-        class="schedule-table-panel bg-green-500" :style=" ' height: '+ (
+        class="schedule-table-panel bg-fixed " 
+        :style=" ' height: '+ (
           bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight )
-        ) +'px; ' " >
+        ) +'px; background-image: url( ' + pkachan + ' ); ' " >
         <Transition name="slide-fade" >
           <table 
             v-if="records.length" 
-            class="schedule-table bg-gray-50 w-full " 
+            class=" schedule-table bg-gray-50 w-full " 
             :style=" ' height: '+ (
               bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight )
             ) +'px; ' " >
             <thead >
               <tr  class="border-b border-gray-200 ">
                 <th  class="w-1/12 font-moul text-center p-2 font-normal
-                  text-xxs 
-                  xs:text-sm
-                  sm:text-sm 
-                  lg:text-sm
-                  xl:text-sm
-                  2xl:text-xl 
-                  3xl:text-xl 
-                  4xl:text-xl 
                 ">ល.រ</th>
                 <th  class="font-moul text-left p-2 font-normal
-                  text-xxs 
-                  xs:text-sm
-                  sm:text-sm 
-                  lg:text-sm
-                  xl:text-sm
-                  2xl:text-xl 
-                  3xl:text-xl 
-                  4xl:text-xl 
                 ">ខ្លឹមសារ 
                 <!-- {{ windowWidth + " - " + windowHeight + " / " + ( windowWidth - windowHeight )}} -->
               </th>
                 <th  class="w-2/12 text-center font-moul p-2 font-normal
-                  text-xxs 
-                  xs:text-sm
-                  sm:text-sm 
-                  lg:text-sm
-                  xl:text-sm
-                  2xl:text-xl 
-                  3xl:text-xl 
-                  4xl:text-xl 
                 ">ទីកន្លែង</th>
                 <th  class="w-2/12 text-center font-moul p-2 font-normal
-                  text-xxs 
-                  xs:text-sm
-                  sm:text-sm 
-                  lg:text-sm
-                  xl:text-sm
-                  2xl:text-xl 
-                  3xl:text-xl 
-                  4xl:text-xl 
                 ">ស្ថានភាព</th>
               </tr>
             </thead>
             <tbody >
-              <tr v-for="(record,index) in records" :key="index" :class=" ' schedule-table-row ' + ( index % 2 ? ' row-odd ' : ' row-even ' )  ">
-                <td  class="w-1/12 text-center font-moul meeting-index 
-                xs:text-xs 
-                sm:text-sm 
-                lg:text-lg 
-                xl:text-xl 
-                2xl:text-2xl 
-                3xl:text-3xl 
-                4xl:text-4xl 
-            ">{{ $toKhmer( ( recordsPerSchedulePage * activePage ) + ( index + 1 ) ) }}</td>
-                <td  class="text-left relative">
-                  <div  class="meeting-objective font-moul font-normal
-                    absolute left-0 top-2 right-0 
-                    text-xxs
-                    xs:text-xxs 
-                    sm:text-sm
-                    lg:text-lg 
-                    xl:text-xl 
-                    2xl:text-2xl 
-                    3xl:text-3xl 
-                    4xl:text-4xl 
-                  ">{{ record.objective }}</div>
-                  <div class="flex absolute left-0 bottom-2 w-full" >
+              <tr v-for="index in recordsPerSchedulePage" :key="index" :class=" ' schedule-table-row ' + ( index % 2 ? ' row-odd ' : ' row-even ' )  ">
+                <td v-if="records[index-1]==undefined" colspan="5" style="height: 100px; " ></td>
+                <td v-if="records[index-1]!=undefined" class="w-1/12 text-center font-moul meeting-index ">{{ 
+                  $toKhmer( ( recordsPerSchedulePage * activePage ) + ( index ) ) 
+                }}</td>
+                <td v-if="records[index-1]!=undefined" class="text-left relative">
+                  <div  class="meeting-objective font-moul font-normal absolute left-0 top-2 right-0 ">{{ records[index-1].objective }}</div>
+                  <div  class="flex absolute left-0 bottom-2 w-full" >
                     <div  class="meeting-leaders flex absolute left-0 bottom-0 ">
-                      <div v-for="(listItem, index ) in record.listMembers" :key="index" class="font-moul meeting-leader 
-                      text-xxxs 
-                      xs:text-xxxs 
-                      sm:text-xxs 
-                      lg:text-sm
-                      xl:text-sm
-                      2xl:text-xl 
-                      3xl:text-xl 
-                      4xl:text-xl 
-                    " >{{ (
+                      <div v-for="(listItem, index ) in records[index-1].listMembers" :key="index" class="font-moul meeting-leader mr-4" >{{ (
                         listItem.member.officers != undefined && listItem.member.officers.length > 0 
                           ? ( 
                             ( listItem.member.officers[0].countesy != undefined ? listItem.member.officers[0].countesy.name : ''  ) + 
                             ( listItem.member.officers[0].position != undefined ? listItem.member.officers[0].position.name : ''  ) 
                           ) 
                           : ''
-                      ) + ' ' + listItem.member.lastname + listItem.member.firstname 
-                      }}</div>
+                      )}} {{ listItem.member.lastname + listItem.member.firstname  }}</div>
                     </div>
-                    <div  class="font-moul meeting-type absolute right-0 bottom-0 
-                    text-xxxs 
-                    xs:text-xxxs 
-                    sm:text-xxs 
-                    lg:text-sm
-                    xl:text-sm
-                    2xl:text-xl 
-                    3xl:text-xl 
-                    4xl:text-xl 
-                    ">{{ record.type != undefined ? record.type.name : '' }}</div>
+                    <div  class="font-moul meeting-type absolute right-0 bottom-0 ">{{ records[index-1].type != undefined ? records[index-1].type.name : '' }}</div>
                   </div>
                 </td>
-                <td  class="w-2/12">
-                  <div  class="font-moul meeting-date
-                    text-xxxs 
-                    xs:text-xxxs 
-                    sm:text-xxs 
-                    lg:text-sm
-                    xl:text-sm
-                    2xl:text-xl 
-                    3xl:text-xl 
-                    4xl:text-xl
-                  ">{{ $toKhmer( record.date ) }}</div>
-                  <div  class="font-moul meeting-time
-                    text-xxxs 
-                    xs:text-xxxs 
-                    sm:text-xxs 
-                    lg:text-sm
-                    xl:text-sm
-                    2xl:text-xl 
-                    3xl:text-xl 
-                    4xl:text-xl
-                  ">{{ $toKhmer( record.start ) }}</div>
-                  <div  class="font-moul meeting-rooms
-                    text-xxxs 
-                    xs:text-xxxs 
-                    sm:text-xxs 
-                    lg:text-sm
-                    xl:text-sm
-                    2xl:text-xl 
-                    3xl:text-xl 
-                    4xl:text-xl  
-                  ">{{ record.rooms != undefined && record.rooms.length > 0 ? record.rooms.map( r => $toKhmer( r.name ) ).join( ' ' ) : '' }}</div>
+                <td v-if="records[index-1]!=undefined" class="w-2/12">
+                  <div  class="font-moul meeting-date">{{ $toKhmer( records[index-1].date ) }}</div>
+                  <div  class="font-moul meeting-time">{{ $toKhmer( records[index-1].start ) }}</div>
+                  <div  class="font-moul meeting-rooms">{{ records[index-1].rooms != undefined && records[index-1].rooms.length > 0 ? records[index-1].rooms.map( r => $toKhmer( r.name ) ).join( ' ' ) : '' }}</div>
                 </td>
-                <td  class="w-2/12" >
+                <td v-if="records[index-1]!=undefined" class="w-2/12" >
                   <div 
-                    :class=" ( parseInt( record.status ) > 0 ? statuses.find( s => s.value == record.status ).color : ' bg-gray-400 ' ) + 
+                    
+                    :class=" ( parseInt( records[index-1].status ) > 0 ? statuses.find( s => s.value == records[index-1].status ).color : ' bg-gray-400 ' ) + 
                     ' font-moul meeting-status rounded-full p-1 text-gray-100 ' +
                     ' text-xxxs xs:text-xxxs sm:text-xxs lg:text-sm xl:text-sm 2xl:text-xl 3xl:text-xl 4xl:text-xl'
                     ">{{ 
-                    statuses.find( s => s.value == record.status ).label
+                    statuses.find( s => s.value == records[index-1].status ).label
                   }}</div>
                 </td>
               </tr>
@@ -193,19 +88,12 @@
       </div>
       <div 
         v-if="meetingRecords != undefined && meetingRecords.length" 
-        class="schedule-footer-panel absolute left-0 bottom-0 right-0  bg-blue-500 z-40"
+        class="schedule-footer-panel absolute left-0 bottom-0 right-0  bg-blue-500 z-30"
         :style=" ' height: '+footerHeight+'px; ' "
         >
         <Vue3Marquee >
           <div v-for="(meeting, index) in meetingRecords" :key="index" class="
           meeting-inprogress-panel font-moul font-normal text-gray-50
-          xs:text-xs 
-          sm:text-sm
-          lg:text-lg
-          xl:text-xl
-          2xl:text-xl 
-          3xl:text-xl 
-          4xl:text-xl  
           " 
           :style="  'line-height: '+ headerHeight +'px;' "
           >{{ $toKhmer( index + 1 ) + ". " + meeting.objective }}</div>
@@ -213,21 +101,14 @@
       </div>
       <div 
         v-if="meetingRecords != undefined && meetingRecords.length" 
-        class="schedule-footer-caption font-moul font-normal absolute left-0 bottom-0 bg-blue-500 text-gray-50 z-50 px-2 border-r border-gray-50
-          xs:text-xs 
-          sm:text-sm
-          lg:text-lg
-          xl:text-xl
-          2xl:text-xl 
-          3xl:text-xl 
-          4xl:text-xl  
+        class="schedule-footer-caption font-moul font-normal absolute left-0 bottom-0 bg-blue-500 text-gray-50 z-40 px-2 border-r border-gray-50
           " 
         :style=" ' height: '+footerHeight+'px; ' + 'line-height: '+ headerHeight +'px;' "
       >កំពុងប្រជុំ</div>
     </div>
-    <!-- <div class="fixed bottom-0 right-0 left-0 text-lg font-bold" >{{ 
-    windowWidth + " - " + windowHeight
-    }}</div> -->
+    <div class="fixed bottom-0 right-0 left-0 text-xxxs font-bold z-50 mx-auto text-white text-left pl-10" >{{ 
+    windowWidth + " - " + windowHeight + ' - ' + recordsPerSchedulePage
+    }}</div>
   </div>
 </template>
 <script>
@@ -238,6 +119,7 @@ import { useRouter } from 'vue-router'
 import DigitalClock from '@components/widgets/DigitalClock.vue'
 import { useNotification , useMessage } from 'naive-ui'
 import { Vue3Marquee } from 'vue3-marquee'
+import pkachan from '@assets/pkachan.png'
 import Crud from '@classes/Crud.js'
 
 export default {
@@ -332,8 +214,9 @@ export default {
 
     const recordsPerSchedulePage = ref( 
       5
-      // Math.ceil( windowHeight.value / 100 ) 
+      // Math.ceil( windowHeight.value / 100 ) > 5 ? 5 : Math.ceil( windowHeight.value / 100 )
     )
+    console.log( recordsPerSchedulePage.value )
     const schedulePages = ref([])
     const activePage = ref(0)
     const records = ref([])
@@ -363,13 +246,13 @@ export default {
       }
       activePage.value = 0
       records.value = schedulePages.value[ activePage.value ]
-      // activateSlide()
+      activateSlide()
     }
 
     let interval = false
     let timeout = false
     function activateSlide(){
-      // if( !interval ) clearInterval( interval )
+      if( !interval ) clearInterval( interval )
       if( !interval ){
         interval = setInterval(() =>{
           records.value = [] 
@@ -427,12 +310,178 @@ export default {
       windowWidth ,
       headerHeight ,
       footerHeight ,
-      bodyHeight
+      bodyHeight ,
+      pkachan
     }
   }
 }
 </script>
 <style scoped >
+@media (min-width: 300px) {
+  .screen-background {
+    
+  }
+  .schedule-panel{
+    
+  }
+  .schedule-header-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-caption {
+    
+  }
+  .schedule-header-panel .digital-clock-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-panel .schedule-logo {
+    
+  }
+  .schedule-header-panel .schedule-logo-caption .schedule-caption {
+    @apply text-xxxs;
+  }
+  .digital-clock-panel {
+    
+  }
+  .digital-clock {
+    @apply text-xxxs;
+  }
+  .schedule-table-panel {
+    
+  }
+  .schedule-table {
+    
+  }
+  .schedule-table thead tr th {
+    @apply  p-1 text-xxxs;
+  }
+  .schedule-table .schedule-table-row {
+    
+  }
+  .schedule-table .row-odd {
+    @apply bg-gray-50;
+  }
+  .schedule-table .row-even {
+    @apply bg-gray-100;
+  }
+  .schedule-table .meeting-index {
+    @apply text-xxxs ;
+  }
+  .schedule-table .meeting-objective {
+    @apply absolute text-xxxs top-2;
+    line-height: 0.8rem;
+  }
+  .schedule-table .meeting-leaders {
+    @apply absolute bottom-0;
+  }
+  .schedule-table .meeting-leaders .meeting-leader {
+    @apply text-xxxxxs;
+  }
+  .schedule-table .meeting-type {
+    @apply absolute bottom-0 text-xxxxxs;
+  }
+  .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
+    @apply text-xxxxs;
+    line-height: 0.6rem;
+  }
+  .schedule-table .meeting-status {
+    @apply text-xxxxxs ;
+  }
+  .schedule-footer-panel {
+    
+  }
+  .schedule-footer-caption { 
+    @apply text-4xl ;
+  }
+  .schedule-footer-panel .meeting-inprogress-panel {
+    @apply text-4xl ;
+  }
+}
+@media (min-width: 500px) {
+  .screen-background {
+    
+  }
+  .schedule-panel{
+    
+  }
+  .schedule-header-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-caption {
+    
+  }
+  .schedule-header-panel .digital-clock-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-panel .schedule-logo {
+    
+  }
+  .schedule-header-panel .schedule-logo-caption .schedule-caption {
+    @apply text-xs;
+  }
+  .digital-clock-panel {
+    
+  }
+  .digital-clock {
+    @apply text-xs;
+  }
+  .schedule-table-panel {
+    
+  }
+  .schedule-table {
+    
+  }
+  .schedule-table thead tr th {
+    @apply  p-2 text-xxs;
+  }
+  .schedule-table .schedule-table-row {
+    
+  }
+  .schedule-table .row-odd {
+    @apply bg-gray-50;
+  }
+  .schedule-table .row-even {
+    @apply bg-gray-100;
+  }
+  .schedule-table .meeting-index {
+    @apply text-xxs ;
+  }
+  .schedule-table .meeting-objective {
+    @apply absolute text-xxs top-2;
+    
+    line-height: 1.4rem;
+  }
+  .schedule-table .meeting-leaders {
+    @apply absolute bottom-0;
+  }
+  .schedule-table .meeting-leaders .meeting-leader {
+    @apply text-xxxxs;
+  }
+  .schedule-table .meeting-type {
+    @apply absolute bottom-0 text-xxxxs;
+  }
+  .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
+    @apply text-xxxs;
+    line-height: 1rem;
+  }
+  .schedule-table .meeting-status {
+    @apply text-xxxs p-1 ;
+  }
+  .schedule-footer-panel {
+    
+  }
+  .schedule-footer-caption { 
+    @apply text-4xl ;
+  }
+  .schedule-footer-panel .meeting-inprogress-panel {
+    @apply text-4xl ;
+  }
+}
 @media (min-width: 700px) {
   .screen-background {
     
@@ -471,7 +520,7 @@ export default {
     
   }
   .schedule-table thead tr th {
-    @apply  p-2 text-xs;
+    @apply  p-2 text-xxs;
   }
   .schedule-table .schedule-table-row {
     
@@ -483,28 +532,28 @@ export default {
     @apply bg-gray-100;
   }
   .schedule-table .meeting-index {
-    @apply text-sm ;
+    @apply text-xs ;
   }
   .schedule-table .meeting-objective {
-    @apply absolute top-2;
-    font-size: 0.9rem;
+    @apply absolute text-xs top-2;
+    
     line-height: 1.4rem;
   }
   .schedule-table .meeting-leaders {
     @apply absolute bottom-0;
   }
   .schedule-table .meeting-leaders .meeting-leader {
-    @apply text-xxs;
+    @apply text-xxxs;
   }
   .schedule-table .meeting-type {
-    @apply absolute bottom-0 text-xxs;
+    @apply absolute bottom-0 text-xxxs;
   }
   .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
-    @apply text-xs;
+    @apply text-xxs;
     line-height: 1rem;
   }
   .schedule-table .meeting-status {
-    @apply text-xs p-2 ;
+    @apply text-xxs p-2 ;
   }
   .schedule-footer-panel {
     
@@ -554,7 +603,7 @@ export default {
       
     }
     .schedule-table thead tr th {
-      @apply text-xl p-3 ;
+      @apply text-lg p-3 ;
     }
     .schedule-table .schedule-table-row {
       
@@ -573,20 +622,21 @@ export default {
       line-height: 2rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-1;
+      @apply absolute bottom-0;
     }
     .schedule-table .meeting-leaders .meeting-leader {
-      @apply text-sm;
+      @apply text-xs;
+      line-height: 1.2rem;
     }
     .schedule-table .meeting-type {
-      @apply absolute bottom-1 text-sm;
+      @apply absolute bottom-0 text-xs;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
-      @apply text-lg;
+      @apply text-sm;
       line-height: 1.5rem;
     }
     .schedule-table .meeting-status {
-      @apply text-lg p-2 ;
+      @apply text-sm p-2 ;
     }
     .schedule-footer-panel {
      
@@ -621,13 +671,13 @@ export default {
       
     }
     .schedule-header-panel .schedule-logo-caption .schedule-caption {
-      @apply text-xl;
+      @apply text-2xl;
     }
     .digital-clock-panel {
       
     }
     .digital-clock {
-      @apply text-xl;
+      @apply text-2xl;
     }
     .schedule-table-panel {
       
@@ -636,7 +686,7 @@ export default {
       
     }
     .schedule-table thead tr th {
-      @apply text-xl p-4 ;
+      @apply text-lg p-2 ;
     }
     .schedule-table .schedule-table-row {
       
@@ -651,20 +701,21 @@ export default {
       @apply text-xl ;
     }
     .schedule-table .meeting-objective {
-      @apply text-xl absolute top-3;
-      line-height: 2rem;
+      @apply text-lg absolute top-3;
+      line-height: 1.9rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-2;
+      @apply absolute bottom-0;
     }
     .schedule-table .meeting-leaders .meeting-leader {
-      @apply text-lg;
+      @apply text-xs;
+      line-height: 1.2rem;
     }
     .schedule-table .meeting-type {
-      @apply absolute bottom-2 text-lg;
+      @apply absolute bottom-0 text-xs;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
-      @apply text-lg;
+      @apply text-sm;
       line-height: 1.5rem;
     }
     .schedule-table .meeting-status {
@@ -674,10 +725,10 @@ export default {
      
     }
     .schedule-footer-caption { 
-      @apply text-4xl ;
+      @apply text-2xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-4xl ;
+      @apply text-2xl ;
     }
   }
   @media (min-width: 1600px) {
@@ -703,13 +754,13 @@ export default {
       
     }
     .schedule-header-panel .schedule-logo-caption .schedule-caption {
-      @apply text-4xl;
+      @apply text-2xl;
     }
     .digital-clock-panel {
       
     }
     .digital-clock {
-      @apply text-4xl;
+      @apply text-2xl;
     }
     .schedule-table-panel {
       
@@ -718,7 +769,7 @@ export default {
       
     }
     .schedule-table thead tr th {
-      @apply text-4xl p-6 ;
+      @apply text-2xl p-2 ;
     }
     .schedule-table .schedule-table-row {
       
@@ -730,36 +781,122 @@ export default {
       @apply bg-gray-100;
     }
     .schedule-table .meeting-index {
-      @apply text-4xl ;
+      @apply text-2xl ;
     }
     .schedule-table .meeting-objective {
-      @apply text-4xl absolute top-8;
-      line-height: 4rem;
+      @apply text-2xl absolute top-2;
+      line-height: 2.4rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-4;
+      @apply absolute bottom-0;
     }
     .schedule-table .meeting-leaders .meeting-leader {
-      @apply text-3xl;
+      @apply text-lg;
+      line-height: 2rem;
     }
     .schedule-table .meeting-type {
-      @apply absolute bottom-4 text-3xl;
+      @apply absolute bottom-0 text-lg;
+      line-height: 2rem;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
-      @apply text-3xl;
-      line-height: 3rem;
+      @apply text-xl;
+      line-height: 2rem;
     }
     .schedule-table .meeting-status {
-      @apply text-3xl p-6 ;
+      @apply text-xl p-2 ;
     }
     .schedule-footer-panel {
      
     }
     .schedule-footer-caption { 
-      @apply text-4xl ;
+      @apply text-2xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-4xl ;
+      @apply text-2xl ;
+    }
+  }
+
+  @media (min-width: 1800px) {
+    .screen-background {
+      
+    }
+    .schedule-panel{
+      
+    }
+    .schedule-header-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-caption {
+      
+    }
+    .schedule-header-panel .digital-clock-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-panel .schedule-logo {
+      
+    }
+    .schedule-header-panel .schedule-logo-caption .schedule-caption {
+      @apply text-3xl;
+    }
+    .digital-clock-panel {
+      
+    }
+    .digital-clock {
+      @apply text-3xl;
+    }
+    .schedule-table-panel {
+      
+    }
+    .schedule-table {
+      
+    }
+    .schedule-table thead tr th {
+      @apply text-2xl p-4;
+    }
+    .schedule-table .schedule-table-row {
+      
+    }
+    .schedule-table .row-odd {
+      @apply bg-gray-50;
+    }
+    .schedule-table .row-even {
+      @apply bg-gray-100;
+    }
+    .schedule-table .meeting-index {
+      @apply text-3xl ;
+    }
+    .schedule-table .meeting-objective {
+      @apply text-2xl absolute top-4;
+      line-height: 2.2rem;
+    }
+    .schedule-table .meeting-leaders {
+      @apply absolute bottom-0;
+    }
+    .schedule-table .meeting-leaders .meeting-leader {
+      @apply text-lg;
+      line-height: 2.1rem;
+    }
+    .schedule-table .meeting-type {
+      @apply text-lg absolute bottom-0;
+    }
+    .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
+      @apply text-2xl;
+      line-height: 2rem;
+    }
+    .schedule-table .meeting-status {
+      @apply text-2xl p-4 ;
+    }
+    .schedule-footer-panel {
+     
+    }
+    .schedule-footer-caption { 
+      @apply text-3xl ;
+    }
+    .schedule-footer-panel .meeting-inprogress-panel {
+      @apply text-3xl ;
     }
   }
 
@@ -820,13 +957,14 @@ export default {
       line-height: 4rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-6;
+      @apply absolute bottom-0;
     }
     .schedule-table .meeting-leaders .meeting-leader {
-      @apply text-3xl;
+      @apply text-2xl;
+      line-height: 2rem;
     }
     .schedule-table .meeting-type {
-      @apply text-3xl absolute bottom-6;
+      @apply text-2xl absolute bottom-0;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
       @apply text-4xl;
@@ -903,13 +1041,14 @@ export default {
       line-height: 5rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-6;
+      @apply absolute bottom-4;
     }
     .schedule-table .meeting-leaders .meeting-leader {
       @apply text-3xl;
+      line-height: 3rem;
     }
     .schedule-table .meeting-type {
-      @apply text-3xl absolute bottom-6;
+      @apply text-3xl absolute bottom-4;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
       @apply text-4xl ;
@@ -984,13 +1123,14 @@ export default {
       @apply text-5xl absolute top-12;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-8;
+      @apply absolute bottom-4;
     }
     .schedule-table .meeting-leaders .meeting-leader {
       @apply text-4xl;
+      line-height: 4rem;
     }
     .schedule-table .meeting-type {
-      @apply text-4xl absolute bottom-8;
+      @apply text-4xl absolute bottom-4;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
       @apply text-4xl;
