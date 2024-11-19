@@ -33,12 +33,16 @@
         </div> -->
       </div>
       <div 
-        class="schedule-table-panel bg-green-500" :style=" ' height: '+ bodyHeight +'px; ' " >
+        class="schedule-table-panel bg-green-500" :style=" ' height: '+ (
+          bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight )
+        ) +'px; ' " >
         <Transition name="slide-fade" >
           <table 
             v-if="records.length" 
             class="schedule-table bg-gray-50 w-full " 
-            :style=" ' height: '+ bodyHeight +'px; ' " >
+            :style=" ' height: '+ (
+              bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight )
+            ) +'px; ' " >
             <thead >
               <tr  class="border-b border-gray-200 ">
                 <th  class="w-1/12 font-moul text-center p-2 font-normal
@@ -60,7 +64,9 @@
                   2xl:text-xl 
                   3xl:text-xl 
                   4xl:text-xl 
-                ">ខ្លឹមសារ {{ windowWidth + " - " + windowHeight + " / " + ( windowWidth - windowHeight )}}</th>
+                ">ខ្លឹមសារ 
+                <!-- {{ windowWidth + " - " + windowHeight + " / " + ( windowWidth - windowHeight )}} -->
+              </th>
                 <th  class="w-2/12 text-center font-moul p-2 font-normal
                   text-xxs 
                   xs:text-sm
@@ -427,6 +433,253 @@ export default {
 }
 </script>
 <style scoped >
+@media (min-width: 700px) {
+  .screen-background {
+    
+  }
+  .schedule-panel{
+    
+  }
+  .schedule-header-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-caption {
+    
+  }
+  .schedule-header-panel .digital-clock-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-panel {
+    
+  }
+  .schedule-header-panel .schedule-logo-panel .schedule-logo {
+    
+  }
+  .schedule-header-panel .schedule-logo-caption .schedule-caption {
+    @apply text-sm;
+  }
+  .digital-clock-panel {
+    
+  }
+  .digital-clock {
+    @apply text-sm;
+  }
+  .schedule-table-panel {
+    
+  }
+  .schedule-table {
+    
+  }
+  .schedule-table thead tr th {
+    @apply  p-2 text-xs;
+  }
+  .schedule-table .schedule-table-row {
+    
+  }
+  .schedule-table .row-odd {
+    @apply bg-gray-50;
+  }
+  .schedule-table .row-even {
+    @apply bg-gray-100;
+  }
+  .schedule-table .meeting-index {
+    @apply text-sm ;
+  }
+  .schedule-table .meeting-objective {
+    @apply absolute top-2;
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+  }
+  .schedule-table .meeting-leaders {
+    @apply absolute bottom-0;
+  }
+  .schedule-table .meeting-leaders .meeting-leader {
+    @apply text-xxs;
+  }
+  .schedule-table .meeting-type {
+    @apply absolute bottom-0 text-xxs;
+  }
+  .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
+    @apply text-xs;
+    line-height: 1rem;
+  }
+  .schedule-table .meeting-status {
+    @apply text-xs p-2 ;
+  }
+  .schedule-footer-panel {
+    
+  }
+  .schedule-footer-caption { 
+    @apply text-4xl ;
+  }
+  .schedule-footer-panel .meeting-inprogress-panel {
+    @apply text-4xl ;
+  }
+}
+@media (min-width: 1000px) {
+    .screen-background {
+      
+    }
+    .schedule-panel{
+      
+    }
+    .schedule-header-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-caption {
+      
+    }
+    .schedule-header-panel .digital-clock-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-panel .schedule-logo {
+      
+    }
+    .schedule-header-panel .schedule-logo-caption .schedule-caption {
+      @apply text-xl;
+    }
+    .digital-clock-panel {
+      
+    }
+    .digital-clock {
+      @apply text-xl;
+    }
+    .schedule-table-panel {
+      
+    }
+    .schedule-table {
+      
+    }
+    .schedule-table thead tr th {
+      @apply text-xl p-3 ;
+    }
+    .schedule-table .schedule-table-row {
+      
+    }
+    .schedule-table .row-odd {
+      @apply bg-gray-50;
+    }
+    .schedule-table .row-even {
+      @apply bg-gray-100;
+    }
+    .schedule-table .meeting-index {
+      @apply text-xl ;
+    }
+    .schedule-table .meeting-objective {
+      @apply text-lg absolute top-4;
+      line-height: 2rem;
+    }
+    .schedule-table .meeting-leaders {
+      @apply absolute bottom-1;
+    }
+    .schedule-table .meeting-leaders .meeting-leader {
+      @apply text-sm;
+    }
+    .schedule-table .meeting-type {
+      @apply absolute bottom-1 text-sm;
+    }
+    .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
+      @apply text-lg;
+      line-height: 1.5rem;
+    }
+    .schedule-table .meeting-status {
+      @apply text-lg p-2 ;
+    }
+    .schedule-footer-panel {
+     
+    }
+    .schedule-footer-caption { 
+      @apply text-4xl ;
+    }
+    .schedule-footer-panel .meeting-inprogress-panel {
+      @apply text-4xl ;
+    }
+  }
+@media (min-width: 1200px) {
+    .screen-background {
+      
+    }
+    .schedule-panel{
+      
+    }
+    .schedule-header-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-caption {
+      
+    }
+    .schedule-header-panel .digital-clock-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-panel {
+      
+    }
+    .schedule-header-panel .schedule-logo-panel .schedule-logo {
+      
+    }
+    .schedule-header-panel .schedule-logo-caption .schedule-caption {
+      @apply text-xl;
+    }
+    .digital-clock-panel {
+      
+    }
+    .digital-clock {
+      @apply text-xl;
+    }
+    .schedule-table-panel {
+      
+    }
+    .schedule-table {
+      
+    }
+    .schedule-table thead tr th {
+      @apply text-xl p-4 ;
+    }
+    .schedule-table .schedule-table-row {
+      
+    }
+    .schedule-table .row-odd {
+      @apply bg-gray-50;
+    }
+    .schedule-table .row-even {
+      @apply bg-gray-100;
+    }
+    .schedule-table .meeting-index {
+      @apply text-xl ;
+    }
+    .schedule-table .meeting-objective {
+      @apply text-xl absolute top-3;
+      line-height: 2rem;
+    }
+    .schedule-table .meeting-leaders {
+      @apply absolute bottom-2;
+    }
+    .schedule-table .meeting-leaders .meeting-leader {
+      @apply text-lg;
+    }
+    .schedule-table .meeting-type {
+      @apply absolute bottom-2 text-lg;
+    }
+    .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
+      @apply text-lg;
+      line-height: 1.5rem;
+    }
+    .schedule-table .meeting-status {
+      @apply text-xl p-2 ;
+    }
+    .schedule-footer-panel {
+     
+    }
+    .schedule-footer-caption { 
+      @apply text-4xl ;
+    }
+    .schedule-footer-panel .meeting-inprogress-panel {
+      @apply text-4xl ;
+    }
+  }
   @media (min-width: 1600px) {
     .screen-background {
       
@@ -465,7 +718,7 @@ export default {
       
     }
     .schedule-table thead tr th {
-      @apply text-3xl p-4 ;
+      @apply text-4xl p-6 ;
     }
     .schedule-table .schedule-table-row {
       
@@ -477,25 +730,27 @@ export default {
       @apply bg-gray-100;
     }
     .schedule-table .meeting-index {
-      @apply text-3xl ;
+      @apply text-4xl ;
     }
     .schedule-table .meeting-objective {
-      @apply text-4xl absolute top-6;
+      @apply text-4xl absolute top-8;
+      line-height: 4rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-2;
+      @apply absolute bottom-4;
     }
     .schedule-table .meeting-leaders .meeting-leader {
       @apply text-3xl;
     }
     .schedule-table .meeting-type {
-      @apply absolute bottom-2 text-3xl;
+      @apply absolute bottom-4 text-3xl;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
       @apply text-3xl;
+      line-height: 3rem;
     }
     .schedule-table .meeting-status {
-      @apply text-3xl p-4 ;
+      @apply text-3xl p-6 ;
     }
     .schedule-footer-panel {
      
@@ -531,13 +786,13 @@ export default {
       
     }
     .schedule-header-panel .schedule-logo-caption .schedule-caption {
-      @apply text-3xl;
+      @apply text-5xl;
     }
     .digital-clock-panel {
       
     }
     .digital-clock {
-      
+      @apply text-5xl;
     }
     .schedule-table-panel {
       
@@ -561,22 +816,24 @@ export default {
       @apply text-4xl ;
     }
     .schedule-table .meeting-objective {
-      @apply text-4xl absolute top-4;
+      @apply text-4xl absolute top-10;
+      line-height: 4rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-2;
+      @apply absolute bottom-6;
     }
     .schedule-table .meeting-leaders .meeting-leader {
       @apply text-3xl;
     }
     .schedule-table .meeting-type {
-      @apply text-3xl absolute bottom-2;
+      @apply text-3xl absolute bottom-6;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
       @apply text-4xl;
+      line-height: 4rem;
     }
     .schedule-table .meeting-status {
-      @apply text-4xl p-4 ;
+      @apply text-4xl p-6 ;
     }
     .schedule-footer-panel {
      
@@ -642,22 +899,24 @@ export default {
       @apply text-5xl ;
     }
     .schedule-table .meeting-objective {
-      @apply text-5xl absolute top-6;
+      @apply text-5xl absolute top-12;
+      line-height: 5rem;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-2;
+      @apply absolute bottom-6;
     }
     .schedule-table .meeting-leaders .meeting-leader {
       @apply text-3xl;
     }
     .schedule-table .meeting-type {
-      @apply text-3xl absolute bottom-2;
+      @apply text-3xl absolute bottom-6;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
-      @apply text-4xl;
+      @apply text-4xl ;
+      line-height: 4rem;
     }
     .schedule-table .meeting-status {
-      @apply text-4xl p-4;
+      @apply text-4xl p-6;
     }
     .schedule-footer-panel {
      
@@ -722,22 +981,23 @@ export default {
       @apply text-5xl ;
     }
     .schedule-table .meeting-objective {
-      @apply text-5xl absolute top-8;
+      @apply text-5xl absolute top-12;
     }
     .schedule-table .meeting-leaders {
-      @apply absolute bottom-2;
+      @apply absolute bottom-8;
     }
     .schedule-table .meeting-leaders .meeting-leader {
       @apply text-4xl;
     }
     .schedule-table .meeting-type {
-      @apply text-4xl absolute bottom-2;
+      @apply text-4xl absolute bottom-8;
     }
     .schedule-table .meeting-date , .schedule-table .meeting-time , .schedule-table .meeting-rooms {
       @apply text-4xl;
+      line-height: 4rem;
     }
     .schedule-table .meeting-status {
-      @apply text-4xl p-5;
+      @apply text-4xl p-8;
     }
     .schedule-footer-panel {
      

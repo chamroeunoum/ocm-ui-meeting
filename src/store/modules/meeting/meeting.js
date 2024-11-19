@@ -104,6 +104,12 @@ const actions = {
   async toggleMeetingRegulator ({ state, commit, rootState },params) {
     return await crud.update(state.server+"/"+state.model.module+"/"+params.meeting.id+"/regulator/"+params.regulator.id+'/toggle')
   },
+  async toggleMeetingMember ({ state, commit, rootState },params) {
+    return await crud.update(state.server+"/"+state.model.module+"/"+params.meeting.id+"/member/"+params.member.id+'/toggle')
+  },
+  async updateMemberGroupAndRole ({ state, commit, rootState },params) {
+    return await crud.create(state.server+"/"+state.model.module+"/update_group_role",params)
+  },
   async readRegulator ({ state, commit, rootState },params) {
     return await crud.read(state.server+"/regulators/pdf?id="+params.id)
   },
