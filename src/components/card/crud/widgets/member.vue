@@ -95,7 +95,7 @@
                 </template>
                 <div class="w-full text-sm text-center " >
                   <n-form 
-                    class="w-full text-left font-btb text-lg flex flex-wrap" 
+                    class="w-full text-left font-omc text-lg flex flex-wrap" 
                     :label-width="80"
                     :model="memberAddDrawer.record"
                     size="large"

@@ -2,12 +2,14 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import { isAdmin, isAuth } from './authentication'
 
 import LoginComponent from './../layouts/login/index.vue'
-import WelcomeComponent from '../layouts/welcome/tvsony43.vue'
+import WelcomeComponent from '../layouts/welcome/template1.vue'
 
 /**
  * Schedule of Meeting
  */
-import TVSony43Component from '../layouts/welcome/tvsony43.vue'
+import ScheduleMeetingTV1Component from '../layouts/welcome/template1.vue'
+import ScheduleMeetingTV2Component from '../layouts/welcome/template2.vue'
+import ScheduleMeetingTV3Component from '../layouts/welcome/template3.vue'
 
 
 import UserComponent from './../components/user/index.vue'
@@ -320,9 +322,25 @@ export const getRoutes = () => {
                 }
             },
             {
-                name: 'TVSony43',
-                path: '/tvsony43',
-                component: TVSony43Component ,
+                name: 'ScheduleMeetingTV1Component',
+                path: '/tvtemplate1',
+                component: ScheduleMeetingTV1Component ,
+                meta: {
+                    // transition: 'fade'
+                }
+            },
+            {
+                name: 'ScheduleMeetingTV2Component',
+                path: '/tvtemplate2',
+                component: ScheduleMeetingTV2Component ,
+                meta: {
+                    // transition: 'fade'
+                }
+            },
+            {
+                name: 'ScheduleMeetingTV3Component',
+                path: '/tvtemplate3',
+                component: ScheduleMeetingTV3Component ,
                 meta: {
                     // transition: 'fade'
                 }
@@ -387,9 +405,25 @@ export const getRoutes = () => {
             }
         },
         {
-            name: 'TVSony43',
-            path: '/tvsony43',
-            component: TVSony43Component ,
+            name: 'ScheduleMeetingTV1Component',
+            path: '/tvtemplate1',
+            component: ScheduleMeetingTV1Component ,
+            meta: {
+                // transition: 'fade'
+            }
+        },
+        {
+            name: 'ScheduleMeetingTV2Component',
+            path: '/tvtemplate2',
+            component: ScheduleMeetingTV2Component ,
+            meta: {
+                // transition: 'fade'
+            }
+        },
+        {
+            name: 'ScheduleMeetingTV3Component',
+            path: '/tvtemplate3',
+            component: ScheduleMeetingTV3Component ,
             meta: {
                 // transition: 'fade'
             }

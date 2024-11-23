@@ -13,7 +13,9 @@
         </div>
         <router-link to="/login" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >ចូលប្រើប្រព័ន្ធ</router-link>
         <!-- <router-link to="/tv" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >Normal Monitor</router-link> -->
-        <!-- <router-link to="/tvsony43" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >កាលវិភាគប្រជុំ</router-link> -->
+        <router-link to="/tvtemplate1" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >កាលវិភាគប្រជុំ　ទី១</router-link>
+        <router-link to="/tvtemplate2" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >កាលវិភាគប្រជុំ ទី២</router-link>
+        <router-link to="/tvtemplate3" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >កាលវិភាគប្រជុំ ទី៣</router-link>
         <!-- <router-link to="/smartwhiteboard" class="font-moul mx-8 border border-gray-300 rounded p-4 hover:border-green-600 duration-300" >Smart Whiteboard</router-link> -->
       </div>
     </Transition>

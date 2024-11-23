@@ -1,9 +1,8 @@
-Copyright (c) 2013 by Sovichet Tep with Reserved Font Name "Kantumruy".
-Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic with Reserved Font Name "Lato".
+Copyright 2019 The Bayon Project Authors (https://github.com/danhhong/Bayon)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
+https://openfontlicense.org
 
 
 -----------------------------------------------------------

@@ -18,7 +18,7 @@
                 <n-form 
                   :id="model.name"
                   :name="model.name"
-                  class="w-full text-left font-btb flex flex-wrap" 
+                  class="w-full text-left font-omc flex flex-wrap" 
                   :label-width="80"
                   :model="record"
                   :rules="rules"

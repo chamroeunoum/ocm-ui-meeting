@@ -79,7 +79,7 @@
               <div v-if="record.image == false || record.image == null || record.image == undefined " class="image-stick-top-left bg-contain bg-center bg-no-repeat " :style=" 'background-image: url('+ orgLogoUrl +');' " ></div>
               <div class="flex flex-wrap my-2" >
                 <div class="w-full py-2" >
-                  <div class="w-full text-left leading-6 my-2 text-md font-sr" v-html="applyTagMark( record.objective )" ></div>
+                  <div class="w-full text-left leading-6 my-2 text-md font-sr" ><pre class="w-full text-left leading-6 my-2 text-md font-sr text-wrap" >{{ applyTagMark( record.objective ) }}</pre></div>
                   <div class="w-full flex my-1">
                     <div class="w-1/2 text-left text-gray-600 leading-4 font-sr text-xxs">{{ record.type != undefined ? record.type.name : '' }}</div>
                     <div class="w-1/2 text-right text-gray-600 leading-6 font-sr text-xxs">{{ record.organizations != undefined && record.organizations.length > 0 ? record.organizations.map( o => o.name ).join( ' ' ) : '' }}</div>
@@ -316,10 +316,9 @@
           </n-tooltip>
           <n-tooltip trigger="hover">
             <template #trigger>
-              <router-link target='_blank' to="tvsony43" >
+              <router-link target='_blank' to="/tvtemplate3" >
                 <svg 
                 class="mx-2 w-8 h-8 p-1 bg-white cursor-pointer text-blue-500 duration-300"
-                @click="$router.push('/tvsony43')" 
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path data-v-781535bd="" d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V6c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v10z" fill="currentColor"></path></svg>
               </router-link>
             </template>

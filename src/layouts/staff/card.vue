@@ -13,7 +13,7 @@
             <img :src="(officer.image!=''&&officer.image!=null? officer.image: ocmLogoUrl )" class="rounded-lg overflow-hidden w-32 mx-auto border border-gray-300 p-0 bg-white" />
           </div>
           <div class="font-moul text-left w-full text-gray-800" >
-              <div class="font-btb font-bold pb-1 leading-6 text-center text-gray-700"  >{{ 
+              <div class="font-omc font-bold pb-1 leading-6 text-center text-gray-700"  >{{ 
                 officer.card != undefined && officer.card != null && officer.card.id > 0 
                   ? officer.card.number 
                   : (

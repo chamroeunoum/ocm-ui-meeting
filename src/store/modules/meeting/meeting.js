@@ -96,7 +96,12 @@ const actions = {
   },
   // Custom function
   async scheduleOnTv ({ state, commit, rootState },params) {
-    return await crud.read(state.server+"/tv/meetings")
+    return await crud.list(state.server+"/tv/meetings" + "?" + new URLSearchParams({
+          search: params.search ,
+          perPage: params.perPage ,
+          page: params.page
+        }).toString()
+      )
   },
   async regulators ({ state, commit, rootState },params) {
     return await crud.read(state.server+"/regulators")

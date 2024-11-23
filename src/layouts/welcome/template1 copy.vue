@@ -26,9 +26,13 @@
         <Transition name="slide-fade" >
           <table 
             v-if="records.length" 
-            class=" schedule-table bg-gray-50 w-full " 
+            class=" schedule-table  w-full bg-gray-50/25" 
             :style=" ' height: '+ (
-              bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight )
+              ( bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight ) ) / ( 
+                records.length == 1 ? 2 : (
+                  records.length == 2 ? 3 : 1 
+                ) 
+              )
             ) +'px; ' " >
             <thead >
               <tr  class="border-b border-gray-200 ">
@@ -45,40 +49,41 @@
               </tr>
             </thead>
             <tbody >
-              <tr v-for="index in recordsPerSchedulePage" :key="index" :class=" ' schedule-table-row ' + ( index % 2 ? ' row-odd ' : ' row-even ' )  ">
-                <td v-if="records[index-1]==undefined" colspan="5" style="height: 100px; " ></td>
-                <td v-if="records[index-1]!=undefined" class="w-1/12 text-center font-moul meeting-index ">{{ 
-                  $toKhmer( ( recordsPerSchedulePage * activePage ) + ( index ) ) 
+              <!-- Template I -->
+              <tr v-for="(record,index) in records.length " :key="index" :class=" ' schedule-table-row ' 
+              + ( index % 2 ? ' row-odd ' : ' row-even ' )  
+              ">
+                <td v-if="records[index]==undefined" colspan="5" style="height: 100px; " ></td>
+                <td v-if="records[index]!=undefined" class="w-1/12 text-center font-moul meeting-index ">{{ 
+                  $toKhmer( ( recordsPerSchedulePage * activePage ) + ( index + 1 ) ) 
                 }}</td>
-                <td v-if="records[index-1]!=undefined" class="text-left relative">
-                  <div  class="meeting-objective font-moul font-normal absolute left-0 top-2 right-0 ">{{ records[index-1].objective }}</div>
+                <td v-if="records[index]!=undefined" class="text-left relative">
+                  <div  class="meeting-objective font-moul font-normal absolute left-0 top-2 right-0 ">{{ records[index].objective }}</div>
                   <div  class="flex absolute left-0 bottom-2 w-full" >
                     <div  class="meeting-leaders flex absolute left-0 bottom-0 ">
-                      <div v-for="(listItem, index ) in records[index-1].listMembers" :key="index" class="font-moul meeting-leader mr-4" >{{ (
+                      <div v-for="(listItem, index ) in records[index].listMembers" :key="index" class="font-moul meeting-leader mr-4" >{{ (
                         listItem.member.officers != undefined && listItem.member.officers.length > 0 
                           ? ( 
                             ( listItem.member.officers[0].countesy != undefined ? listItem.member.officers[0].countesy.name : ''  ) + 
                             ( listItem.member.officers[0].position != undefined ? listItem.member.officers[0].position.name : ''  ) 
                           ) 
                           : ''
-                      )}} {{ listItem.member.lastname + listItem.member.firstname  }}</div>
+                      )}} {{ listItem.member.lastname + " " +listItem.member.firstname  }}</div>
                     </div>
-                    <div  class="font-moul meeting-type absolute right-0 bottom-0 ">{{ records[index-1].type != undefined ? records[index-1].type.name : '' }}</div>
+                    <div  class="font-moul meeting-type absolute right-0 bottom-0 ">{{ records[index].type != undefined ? records[index].type.name : '' }}</div>
                   </div>
                 </td>
-                <td v-if="records[index-1]!=undefined" class="w-2/12">
-                  <div  class="font-moul meeting-date">{{ $toKhmer( records[index-1].date ) }}</div>
-                  <div  class="font-moul meeting-time">{{ $toKhmer( records[index-1].start ) }}</div>
-                  <div  class="font-moul meeting-rooms">{{ records[index-1].rooms != undefined && records[index-1].rooms.length > 0 ? records[index-1].rooms.map( r => $toKhmer( r.name ) ).join( ' ' ) : '' }}</div>
+                <td v-if="records[index]!=undefined" class="w-2/12">
+                  <div  class="font-moul meeting-date">{{ $toKhmer( dateFormat( new Date( records[index].date ) , "dd-mm-yyyy" ) ) }}</div>
+                  <div  class="font-moul meeting-time">{{ $toKhmer( records[index].start ) }}</div>
+                  <div  class="font-moul meeting-rooms">{{ records[index].rooms != undefined && records[index].rooms.length > 0 ? records[index].rooms.map( r => $toKhmer( r.name ) ).join( ' ' ) : '' }}</div>
                 </td>
-                <td v-if="records[index-1]!=undefined" class="w-2/12" >
+                <td v-if="records[index]!=undefined" class="w-2/12" >
                   <div 
-                    
-                    :class=" ( parseInt( records[index-1].status ) > 0 ? statuses.find( s => s.value == records[index-1].status ).color : ' bg-gray-400 ' ) + 
-                    ' font-moul meeting-status rounded-full p-1 text-gray-100 ' +
-                    ' text-xxxs xs:text-xxxs sm:text-xxs lg:text-sm xl:text-sm 2xl:text-xl 3xl:text-xl 4xl:text-xl'
+                    :class=" ( parseInt( records[index].status ) > 0 ? statuses.find( s => s.value == records[index].status ).color : ' bg-gray-400 ' ) + 
+                    ' font-moul meeting-status rounded-full p-1 text-gray-100 '
                     ">{{ 
-                    statuses.find( s => s.value == records[index-1].status ).label
+                    statuses.find( s => s.value == records[index].status ).label
                   }}</div>
                 </td>
               </tr>
@@ -120,9 +125,12 @@ import DigitalClock from '@components/widgets/DigitalClock.vue'
 import { useNotification , useMessage } from 'naive-ui'
 import { Vue3Marquee } from 'vue3-marquee'
 import pkachan from '@assets/pkachan.png'
+import dateFormat from 'dateformat'
 import Crud from '@classes/Crud.js'
 
 export default {
+  methods: {
+  },
   name: 'TVSony43' ,
   components: {
     DigitalClock ,
@@ -161,7 +169,7 @@ export default {
       {
         label: 'មិនទាន់ប្រជុំ' ,
         value : 1 ,
-        color: ' bg-blue-600 ' 
+        color: ' bg-yellow-600 ' 
       } ,
       {
         label: 'កំពុងប្រជុំ' ,
@@ -171,7 +179,7 @@ export default {
       {
         label: 'នៅបន្ត' ,
         value : 4 ,
-        color: ' bg-yellow-600 ' 
+        color: ' bg-blue-600 ' 
       } ,
       {
         label: 'ប្ដូរ' ,
@@ -266,7 +274,7 @@ export default {
             clearTimeout( timeout )
             console.log( "Clear timeout : " + timeout )
           },500)
-        },6000)
+        },9000)
       }
     }
     // const crud = ref(null)
@@ -295,6 +303,14 @@ export default {
     // crud.value = new Crud()
     // crud.value.setConfig( import.meta.env.VITE_API_SERVER , store.getters[model.name+'/model'] , store.getters[model.name+'/columns'].all )
 
+    function isSameDate( date ){
+      return dateFormat( new Date( date ) , "dd-mm-yyyy" ) == dateFormat( Date.now() , 'dd-mm-yyyy' )
+    }
+
+    function isSameDatetime( datetime ){
+      return dateFormat( new Date( datetime ) , "dd-mm-yyyy" ) == dateFormat( Date.now() , 'dd-mm-yyyy' )
+    }
+
     getScheduleMeeting()
 
     return {
@@ -311,7 +327,10 @@ export default {
       headerHeight ,
       footerHeight ,
       bodyHeight ,
-      pkachan
+      pkachan ,
+      dateFormat ,
+      // Functions 
+      isSameDate
     }
   }
 }
@@ -361,10 +380,10 @@ export default {
     
   }
   .schedule-table .row-odd {
-    @apply bg-gray-50;
+    @apply bg-gray-50/25 ;
   }
   .schedule-table .row-even {
-    @apply bg-gray-100;
+    @apply bg-gray-100/25;
   }
   .schedule-table .meeting-index {
     @apply text-xxxs ;
@@ -396,7 +415,7 @@ export default {
     @apply text-4xl ;
   }
   .schedule-footer-panel .meeting-inprogress-panel {
-    @apply text-4xl ;
+    @apply text-4xl mx-4;
   }
 }
 @media (min-width: 500px) {
@@ -479,7 +498,7 @@ export default {
     @apply text-4xl ;
   }
   .schedule-footer-panel .meeting-inprogress-panel {
-    @apply text-4xl ;
+    @apply text-4xl mx-4 ;
   }
 }
 @media (min-width: 700px) {
@@ -526,10 +545,10 @@ export default {
     
   }
   .schedule-table .row-odd {
-    @apply bg-gray-50;
+    @apply bg-gray-50/25 ;
   }
   .schedule-table .row-even {
-    @apply bg-gray-100;
+    @apply bg-gray-100/25;
   }
   .schedule-table .meeting-index {
     @apply text-xs ;
@@ -562,7 +581,7 @@ export default {
     @apply text-4xl ;
   }
   .schedule-footer-panel .meeting-inprogress-panel {
-    @apply text-4xl ;
+    @apply text-4xl  mx-4 ;
   }
 }
 @media (min-width: 1000px) {
@@ -609,10 +628,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-xl ;
@@ -645,7 +664,7 @@ export default {
       @apply text-4xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-4xl ;
+      @apply text-4xl  mx-4 ;
     }
   }
 @media (min-width: 1200px) {
@@ -692,10 +711,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-xl ;
@@ -728,7 +747,7 @@ export default {
       @apply text-2xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-2xl ;
+      @apply text-2xl  mx-4 ;
     }
   }
   @media (min-width: 1600px) {
@@ -775,10 +794,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-2xl ;
@@ -812,7 +831,7 @@ export default {
       @apply text-2xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-2xl ;
+      @apply text-2xl  mx-4 ;
     }
   }
 
@@ -860,10 +879,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-3xl ;
@@ -896,7 +915,7 @@ export default {
       @apply text-3xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-3xl ;
+      @apply text-3xl  mx-4 ;
     }
   }
 
@@ -944,10 +963,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-4xl ;
@@ -980,7 +999,7 @@ export default {
       @apply text-5xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-5xl ;
+      @apply text-5xl  mx-4 ;
     }
   }
 
@@ -1028,10 +1047,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-5xl ;
@@ -1064,7 +1083,7 @@ export default {
       @apply text-5xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-5xl ;
+      @apply text-5xl  mx-4 ;
     }
   }
   @media (min-width: 3800px) {
@@ -1111,10 +1130,10 @@ export default {
       
     }
     .schedule-table .row-odd {
-      @apply bg-gray-50;
+      @apply bg-gray-50/25 ;
     }
     .schedule-table .row-even {
-      @apply bg-gray-100;
+      @apply bg-gray-100/25;
     }
     .schedule-table .meeting-index {
       @apply text-5xl ;
@@ -1146,7 +1165,7 @@ export default {
       @apply text-5xl ;
     }
     .schedule-footer-panel .meeting-inprogress-panel {
-      @apply text-5xl ;
+      @apply text-5xl  mx-4 ;
     }
   }
 
