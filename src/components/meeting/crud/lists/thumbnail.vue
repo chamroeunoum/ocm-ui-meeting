@@ -13,7 +13,7 @@
           <n-select 
             @update:value="updateStatus"
             placeholder="ស្ថានភាពកិច្ចប្រជុំ"
-            :options="statuses"
+            :options="statuses" 
             multiple
           >
           </n-select>
