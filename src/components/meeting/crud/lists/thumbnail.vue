@@ -82,34 +82,22 @@
                   <div class="w-full text-left leading-6 my-2 text-md font-sr" ><pre class="w-full text-left leading-6 my-2 text-md font-sr text-wrap" >{{ applyTagMark( record.objective ) }}</pre></div>
                   <div class="w-full flex my-1">
                     <div class="w-1/2 text-left text-gray-600 leading-4 font-sr text-xxs">{{ record.type != undefined ? record.type.name : '' }}</div>
-                    <div class="w-1/2 text-right text-gray-600 leading-6 font-sr text-xxs">{{ record.organizations != undefined && record.organizations.length > 0 ? record.organizations.map( o => o.name ).join( ' ' ) : '' }}</div>
+                    <div class="w-1/2 text-right text-gray-600 leading-6 font-sr text-xxs" v-html="record.organizations != undefined && record.organizations.length > 0 ? record.organizations.map( o => o.name ).join( '<br/>' ) : '' " ></div>
                   </div>
                   <div class="w-full flex my-1">
-                    <div class="w-1/2 text-left text-gray-600 leading-4 font-sr text-xxs">{{ 
-                      ( record.listMembers != undefined && record.listMembers.length > 0
-                        ? record.listMembers.filter( o => o.group == 'lead_meeting' ).map( lm => 
-                        (
-                          lm.member.officers != undefined && lm.member.officers.length > 0 
-                            ? lm.member.officers.map( o => ( o.countesy != undefined ? o.countesy.name : '' ) + ( o.position != undefined ? o.position.name : '' ) ) + ' ' +lm.member.lastname + ' ' + lm.member.firstname 
-                            : ""
-                        )
-                      ).join( ' ' )
-                        : ''
-                      )
-                    }}</div>
+                    <div class="w-1/2 ">
+                      <div v-for="(member, index) in getListMembersLeaders(record)" :key="index" class="text-left text-gray-600 leading-4 font-sr text-xxs mb-2" v-html="member.officers.map( 
+                          o => 
+                          // ( o.organization != undefined ? o.organization.name : '' ) + '<br/>' + ( o.position != undefined ? o.position.name : '' ) + '<br/>' +
+                          ( o.countesy != undefined ? o.countesy.name : '' ) + ' ' + member.lastname + ' ' + member.firstname 
+                        ).join(' ')"></div>
+                    </div>
                     <div class="w-1/2 text-right text-gray-600 leading-4 font-sr text-xxs">
-                      {{ 
-                      ( record.listMembers != undefined && record.listMembers.length > 0
-                        ? record.listMembers.filter( o => o.group == 'defender' ).map( lm => 
-                        (
-                          lm.member.officers != undefined && lm.member.officers.length > 0 
-                            ? lm.member.officers.map( o => ( o.countesy != undefined ? o.countesy.name : '' ) + ( o.position != undefined ? o.position.name : '' ) ) + ' ' +lm.member.lastname + ' ' + lm.member.firstname 
-                            : ""
-                        )
-                      ).join( ' ' )
-                        : ''
-                      )
-                    }}
+                      <div v-for="(member, index) in getListMembersDefenders(record)" :key="index" class="text-left text-gray-600 leading-4 font-sr text-xxs mb-2" v-html="member.officers.map( 
+                          o => 
+                          // ( o.organization != undefined ? o.organization.name : '' ) + '<br/>' + ( o.position != undefined ? o.position.name : '' ) + '<br/>' +
+                          ( o.countesy != undefined ? o.countesy.name : '' ) + ' ' + member.lastname + ' ' + member.firstname 
+                        ).join(' ')" ></div>
                     </div>
                   </div>
                   <div class="w-full flex my-1">
@@ -447,6 +435,30 @@ export default {
       if( parseInt( actionStatus ) > 0 ) getRecords()
     }
 
+    function getListMembersDefenders(record){
+      return record.listMembers != undefined && record.listMembers.length > 0
+        ? record.listMembers.filter( o => o.group == 'defender' ).map( lm => 
+          (
+            lm.member.officers != undefined && lm.member.officers.length > 0 
+              ? lm.member
+              : []
+          )
+        )
+        : []
+    }
+
+    function getListMembersLeaders(record){
+      return record.listMembers != undefined && record.listMembers.length > 0
+        ? record.listMembers.filter( o => o.group == 'lead_meeting' ).map( lm => 
+          (
+            lm.member.officers != undefined && lm.member.officers.length > 0 
+              ? lm.member
+              : []
+          )
+        )
+        : []
+    }
+    
     const search = ref(null)
     
     /**
@@ -711,7 +723,9 @@ export default {
       rooms ,
       selectedDate ,
       updateDate ,
-      orgLogoUrl
+      orgLogoUrl ,
+      getListMembersLeaders ,
+      getListMembersDefenders
     }
   }
 }

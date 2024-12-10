@@ -10,6 +10,7 @@ import WelcomeComponent from '../layouts/welcome/template1.vue'
 import ScheduleMeetingTV1Component from '../layouts/welcome/template1.vue'
 import ScheduleMeetingTV2Component from '../layouts/welcome/template2.vue'
 import ScheduleMeetingTV3Component from '../layouts/welcome/template3.vue'
+import ScheduleMeetingTV4Component from '../layouts/welcome/template4.vue'
 
 
 import UserComponent from './../components/user/index.vue'
@@ -345,6 +346,14 @@ export const getRoutes = () => {
                     // transition: 'fade'
                 }
             },
+            {
+                name: 'ScheduleMeetingTV4Component',
+                path: '/tvtemplate4',
+                component: ScheduleMeetingTV4Component ,
+                meta: {
+                    // transition: 'fade'
+                }
+            },
             // will match everything and put it under `$route.params.pathMatch`
             { path: '/:pathMatch(.*)*', name: 'NotFound', component: Page404 }
         ]
@@ -424,6 +433,14 @@ export const getRoutes = () => {
             name: 'ScheduleMeetingTV3Component',
             path: '/tvtemplate3',
             component: ScheduleMeetingTV3Component ,
+            meta: {
+                // transition: 'fade'
+            }
+        },
+        {
+            name: 'ScheduleMeetingTV4Component',
+            path: '/tvtemplate4',
+            component: ScheduleMeetingTV4Component ,
             meta: {
                 // transition: 'fade'
             }

@@ -1,17 +1,43 @@
 <template>
     <!-- Start Widget -->
-    <div :class="dgClass!=undefined && dgClass.length > 0 ? dgClass : 'time' ">{{ 
-    // $toKhmer( clock.date ) + ' ' + 
-    $toKhmer( clock.time ) }}</div>
+    <div :class="dgClass!=undefined && dgClass.length > 0 ? dgClass : 'time' ">
+        {{ $toKhmer( clock.date ) + ' ' + $toKhmer( clock.time ) }}
+    </div>
     <!-- End widget -->
 </template>
 <script>
 import { ref, reactive, computed } from 'vue'
 export default {
-    props: [
-        'size' ,
-        'dgClass'
-    ],
+    props: {
+        size : {
+            type: Number ,
+            required: false ,
+            default: () => {
+                return 0
+            }
+        } ,
+        dgClass : {
+            type: String ,
+            required: false ,
+            default: () => {
+                return ''
+            }
+        } ,
+        prefix : {
+            type: String ,
+            required: false ,
+            default: () => {
+                return ''
+            }
+        },
+        suffix : {
+            type: String ,
+            required: false ,
+            default: () => {
+                return ''
+            }
+        }
+    },
     components: {
         
     },

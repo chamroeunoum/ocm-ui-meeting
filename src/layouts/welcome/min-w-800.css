@@ -44,42 +44,5 @@
     }
     .schedule-footer-panel .meeting-inprogress-panel {
         font-size: 1.1rem;
-        padding: 0px 10px 0px 55px;
     }
 }
-/* @media (min-height: 550px ){
-    .schedule-header-panel .schedule-logo-panel {
-        @apply w-12 ;
-    }
-    .schedule-table .meeting-objective {
-        font-size: 1.2rem;
-        line-height: 1.9rem;
-    }
-    .schedule-table .meeting-leader {
-        font-size: 0.9rem;
-    }
-    .schedule-table .meeting-type-panel {
-        width: 140px;
-    }
-    .schedule-table .meeting-type {
-        font-size: 0.9rem;
-    }
-    .schedule-table .meeting-dtr {
-        width: 110px;
-        font-size: 0.9rem;
-        line-height: 1.2rem;
-    }
-    .schedule-table .meeting-status {
-        width: 90px;
-        font-size: 0.8rem;
-        padding: 6px 9px ; 
-    }
-    .schedule-footer-caption { 
-        font-size: 1.2rem;
-        padding: 0px 5px; 
-    }
-    .schedule-footer-panel .meeting-inprogress-panel {
-        font-size: 1.2rem;
-        padding: 0px 10px 0px 65px;
-    }
-} */

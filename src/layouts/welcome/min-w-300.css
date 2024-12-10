@@ -8,7 +8,8 @@
     }
     .digital-clock {
         @apply text-left text-gray-50 ;
-        font-size: 0.5rem;
+        font-size: 0.3rem;
+        line-height: 0.3rem;
     }
     .schedule-table-panel {
         overflow-y: scroll ;
@@ -85,14 +86,14 @@
     .schedule-footer-panel .meeting-inprogress-panel {
         @apply text-gray-50;
         font-size: 0.5rem;
-        padding: 0px 10px 0px 30px;
-        background-size: 5% ; 
-        background-position: 10% ; 
+        padding: 0px 3rem;
+        /* background-size: 3% ;
+        background-position: 2% ; 
         background-repeat: no-repeat ; 
-        background-image: url( '@assets/pkachanbulletwhite.png' );
+        background-image: url( '@assets/pkachanbulletwhite.png' ); */
     }
 }
-@media (min-height: 240px) {
+@media (min-height: 200px) {
     .schedule-header-panel .schedule-logo-panel {
         @apply w-5 ;
     }
@@ -115,6 +116,9 @@
         font-size: 0.35rem;
         line-height: 0.5rem;
         padding: 2px 5px; 
+    }
+    .schedule-footer-panel .meeting-inprogress-panel {
+        font-size: 0.5rem;
     }
 }
 @media (min-height: 280px) {
@@ -142,6 +146,9 @@
         line-height: 0.5rem;
         padding: 2px 5px; 
     }
+    .schedule-footer-panel .meeting-inprogress-panel {
+        font-size: 0.6rem;
+    }
 }
 @media (min-height: 300px) {
     .schedule-header-panel .schedule-logo-panel {
@@ -160,7 +167,7 @@
         font-size: 0.6rem;
     }
     .digital-clock {
-        @apply text-left text-gray-50 ;
+        @apply text-left text-gray-50 whitespace-nowrap ;
         font-size: 0.6rem;
     }
     .schedule-table .meeting-index {
@@ -193,7 +200,6 @@
     }
     .schedule-footer-panel .meeting-inprogress-panel {
         font-size: 0.6rem;
-        padding: 0px 10px 0px 35px;
     }
 
 }

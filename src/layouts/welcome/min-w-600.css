@@ -47,7 +47,6 @@
     }
     .schedule-footer-panel .meeting-inprogress-panel {
         font-size: 0.9rem;
-        padding: 0px 10px 0px 50px;
     }
 }
 @media (min-height: 500px ){

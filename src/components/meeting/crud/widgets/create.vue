@@ -114,6 +114,7 @@
                     <n-select
                       v-model:value="selectedOrganization"
                       filterable
+                      multiple
                       placeholder="សូមជ្រើសរើសប្រភព​"
                       :options="organizations"
                     />
@@ -195,7 +196,7 @@ export default {
         return { label: o.name , value: o.id } 
       })
     })
-    const selectedOrganization = ref()
+    const selectedOrganization = ref([])
 
     const today = ref( new Date() )
 
@@ -272,7 +273,7 @@ export default {
       props.record.start = [meetingDateTime.start.hour,meetingDateTime.start.minutes].join(':')
       props.record.end = [meetingDateTime.end.hour,meetingDateTime.end.minutes].join(':')
       props.record.type_id = selectedType.value > 0 ? selectedType.value : 0
-      props.record.organizations = selectedOrganization.value > 0 ? selectedOrganization.value : 0
+      props.record.organizations = Array.isArray( selectedOrganization.value ) && selectedOrganization.value.length > 0 ? selectedOrganization.value : []
       
       if( props.model === undefined || props.model.name == "" ){
         notify.warning({

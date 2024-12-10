@@ -113,6 +113,7 @@
                     <n-select
                       v-model:value="selectedOrganization"
                       filterable
+                      multiple
                       placeholder="សូមជ្រើសរើសប្រភព​"
                       :options="organizations"
                     />
@@ -203,7 +204,7 @@ export default {
         return { label: o.name , value: o.id } 
       })
     })
-    const selectedOrganization = ref(null)
+    const selectedOrganization = ref([])
 
     const today = ref( new Date() )
 
@@ -299,6 +300,7 @@ export default {
       props.record.start = [meetingDateTime.start.hour,meetingDateTime.start.minutes].join(':')
       props.record.end = [meetingDateTime.end.hour,meetingDateTime.end.minutes].join(':')
       props.record.type_id = selectedType.value > 0 ? selectedType.value : 0 
+      props.record.organizations = Array.isArray( selectedOrganization.value ) && selectedOrganization.value.length > 0 ? selectedOrganization.value : []
 
       btnSavingLoadingRef.value = true
       store.dispatch( props.model.name+'/update',{
@@ -310,7 +312,7 @@ export default {
         type_id: props.record.type_id ,
         contact_info : props.record.contact_info ,
         summary : props.record.summary ,
-        organizations : selectedOrganization.value
+        organizations : props.record.organizations
       }).then( res => {
         switch( res.status ){
           case 200 : 
@@ -346,8 +348,8 @@ export default {
     function initial(){
       selectedType.value = props.record.type_id > 0 ? props.record.type_id : null
       if( props.record.organizations != undefined && props.record.organizations.length > 0 ) {
-        selectedOrganization.value = null
-        for( var i in props.record.organizations ) selectedOrganization.value = props.record.organizations[i].id 
+        selectedOrganization.value = []
+        for( var i in props.record.organizations ) selectedOrganization.value.push( props.record.organizations[i].id )
       }
       today.value = props.record.date ? new Date( props.record.date ) : new Date()
       meetingDateTime.year = parseInt( dateFormat( today.value , 'yyyy') ) ,

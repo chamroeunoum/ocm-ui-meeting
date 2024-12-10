@@ -50,7 +50,7 @@
     }
     .schedule-footer-panel .meeting-inprogress-panel {
         font-size: 0.7rem;
-        padding: 0px 10px 0px 40px;
+        padding: 0px 1rem;
     }
 }
 @media (min-height: 450px ){
@@ -103,6 +103,5 @@
     }
     .schedule-footer-panel .meeting-inprogress-panel {
         font-size: 0.8rem;
-        padding: 0px 10px 0px 50px;
     }
 }
