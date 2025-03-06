@@ -25,7 +25,7 @@
         ) +'px; background-image: url( ' + pkachan + ' ); ' " >
         <Transition name="slide-fade" >
           <table 
-            v-if="records.length" 
+            v-if="records.length"  
             class=" schedule-table  w-full bg-gray-50/25" 
             :style=" ' height: '+ (
               ( bodyHeight + ( meetingRecords != undefined && meetingRecords.length ? 0 : footerHeight ) ) / ( 
