@@ -140,7 +140,8 @@
         :style=" ' height: '+footerHeight+'px; ' + 'line-height: '+ headerHeight +'px;' "
       >កំពុងប្រជុំ</div>
     </div>
-    <div class="fixed bottom-0 px-1 left-0 text-xxxxs z-50 mx-auto bg-white text-gray-600 rounded text-left pl-4" >
+    <!-- <div class="fixed bottom-0 px-1 left-0 text-xxxxs z-50 mx-auto bg-white text-gray-600 rounded text-left pl-4" ></div> -->
+    <div class="fixed bottom-0 right-0 left-0 text-xxxxs z-50 mx-auto text-gray-600 rounded text-left pl-4" >
       <div v-if="errorGetScheduleMeeting" class="absolute left-0 bottom-0 w-2 h-2 bg-red-500" ></div>
       <div v-if="!errorGetScheduleMeeting" class="absolute left-0 bottom-0 w-2 h-2 bg-green-500" ></div>{{ 
     windowWidth + "x" + windowHeight + ' - PP' + recordsPerSchedulePage + ' - CY' + fetchingMeetingCounter + ' - ' + ( activePage + 1) + '/' + schedulePages.length 
