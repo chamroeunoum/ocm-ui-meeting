@@ -25,6 +25,10 @@
         font-size: 0.45rem;
         line-height: 0.5rem;
     }
+    .schedule-table .meeting-type-panel {
+        text-align: right; 
+        width: 100px;
+    }
     .schedule-table .meeting-type {
         font-size: 0.45rem;
         line-height: 0.5rem;

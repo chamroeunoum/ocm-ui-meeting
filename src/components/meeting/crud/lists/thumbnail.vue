@@ -86,10 +86,10 @@
                   </div>
                   <div class="w-full flex my-1">
                     <div class="w-1/2 ">
-                      <div v-for="(member, index) in getListMembersLeaders(record)" :key="index" class="text-left text-gray-600 leading-4 font-sr text-xxs mb-2" v-html="member.officers.map( 
+                      <div v-for="(lm, index) in getListMembersLeaders(record)" :key="index" class="text-left text-gray-600 leading-4 font-sr text-xxs mb-2" v-html="lm.member.officers.map( 
                           o => 
                           // ( o.organization != undefined ? o.organization.name : '' ) + '<br/>' + ( o.position != undefined ? o.position.name : '' ) + '<br/>' +
-                          ( o.countesy != undefined ? o.countesy.name : '' ) + ' ' + member.lastname + ' ' + member.firstname 
+                          ( o.countesy != undefined ? o.countesy.name : '' ) + ' ' + lm.member.lastname + ' ' + lm.member.firstname 
                         ).join(' ')"></div>
                     </div>
                     <div class="w-1/2 text-right text-gray-600 leading-4 font-sr text-xxs">
@@ -105,7 +105,7 @@
                     <div class="w-1/2 text-right text-gray-600 leading-4 font-sr text-xxs"></div>
                   </div>
                   <div class="w-full flex my-1">
-                    <div class="w-1/2 text-left text-gray-600 leading-4 font-sr text-xxs">{{ $toKhmer( record.date ) }}</div>
+                    <div class="w-1/2 text-left text-gray-600 leading-4 font-sr text-xxs">{{ $toKhmer( dateFormat( new Date( record.date ) , 'dd-mm-yyyy' ) ) }}</div>
                     <div class="w-1/2 text-right text-gray-600 leading-4 font-sr text-xxs"></div>
                   </div>
                   <div class="w-full flex my-1">
@@ -448,15 +448,11 @@ export default {
     }
 
     function getListMembersLeaders(record){
-      return record.listMembers != undefined && record.listMembers.length > 0
-        ? record.listMembers.filter( o => o.group == 'lead_meeting' ).map( lm => 
-          (
-            lm.member.officers != undefined && lm.member.officers.length > 0 
-              ? lm.member
-              : []
-          )
-        )
+      let result = record.listMembers != undefined && record.listMembers.length > 0
+        ? record.listMembers.filter( o => o.group == 'lead_meeting' && o.member != undefined && o.member.officers != undefined && o.member.officers.length > 0  )
         : []
+      console.log( result )
+      return result 
     }
     
     const search = ref(null)
@@ -725,7 +721,8 @@ export default {
       updateDate ,
       orgLogoUrl ,
       getListMembersLeaders ,
-      getListMembersDefenders
+      getListMembersDefenders ,
+      dateFormat
     }
   }
 }

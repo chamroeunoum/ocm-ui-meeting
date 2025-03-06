@@ -20,10 +20,11 @@
         line-height: 2.4rem;
     }
     .schedule-table .meeting-leader {
+        @apply my-2 ;
         font-size: 1.3rem;
     }
     .schedule-table .meeting-type-panel {
-        width: 190px;
+        width: 200px;
     }
     .schedule-table .meeting-type {
         font-size: 1.3rem;
