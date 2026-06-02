@@ -1,7 +1,7 @@
 <template>
   <div class="font-pvh flex w-full h-10 p-1 border-b print:hidden" >
     <div class="flex-none w-6 rounded-full mr-1" >
-      <img src="./../../assets/logo.png" alt="គ្រប់គ្រងបណ្ដុំឯកសារ" title="គ្រប់គ្រងបណ្ដុំឯកសារ" class="w-full mx-auto" >
+      <img src="./../../assets/logo.png" class="w-full mx-auto" >
     </div>
     <div class="flex-grow h-8 leading-10 pt-1 text-md font-moul text-left"> </div>
     <div class="flex-none ">
