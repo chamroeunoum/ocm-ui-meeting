@@ -11,9 +11,9 @@
       <div class="flex-none overflow-hidden -mt-1 w-10 h-10 " >
         <img :src="ocmLogoPng" class="h-10 mx-auto"/>
       </div>
-      <div class="flex-none h-8 leading-8 pt-1 font-moul text-right ml-1 text-gray-700 invisible sm:visible md:visible lg:visible xl:visible" style=" overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" >
-        <div class="h-4 text-left text-xxs -mt-3 font-moul" >ទីស្ដីការគណៈរដ្ឋមន្ត្រី</div>
-        <div class="h-4 text-left text-xxs font-moul " >{{ $store.state.system.name }}</div>
+      <div class="flex-none h-8 leading-8 pt-1 font-moul text-right ml-1 text-gray-700 invisible sm:visible md:visible lg:visible xl:visible" style=" white-space: nowrap; text-overflow: ellipsis;" >
+        <div class="h-4 text-left text-xxxs -mt-3 font-moul" >ទីស្ដីការគណៈរដ្ឋមន្ត្រី</div>
+        <div class="h-4 text-left text-xxxs font-moul " >{{ $store.state.system.name }}</div>
       </div>
     </div>
     <div class="ocm-bottom-menu mx-auto rounded flex flex-wrap justify-center items-center " >

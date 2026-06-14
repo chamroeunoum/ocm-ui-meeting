@@ -11,7 +11,7 @@
                             ព័ត៌មានផ្ទាល់ខ្លួន
                         </div>
                     </div>
-                    <div class="p-2" >
+                    <!-- <div class="p-2" >
                         <div class="dashboard-item font-moul " @click="$router.push('/cards')" >
                             <svg 
                                 class="w-20 mb-4 text-blue-500"
@@ -26,7 +26,7 @@
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"><path d="M16 8h14v2H16z" fill="currentColor"></path><path d="M6 10.59L3.41 8L2 9.41l4 4l8-8L12.59 4L6 10.59z" fill="currentColor"></path><path d="M16 22h14v2H16z" fill="currentColor"></path><path d="M6 24.59L3.41 22L2 23.41l4 4l8-8L12.59 18L6 24.59z" fill="currentColor"></path></svg>
                             វត្តមាន
                         </div>
-                    </div>
+                    </div> -->
                     <div class="p-2" >
                         <div class="dashboard-item font-moul " @click="$router.push('/meetings')" >
                             <svg 
