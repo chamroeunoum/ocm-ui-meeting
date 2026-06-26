@@ -1,7 +1,7 @@
 <template>
   <div class="w-full" >
     <div class="grid grid-flow-row gap-2 mt-8 p-4 pb-16 md:grid-flow-col md:grid-cols-10 lg:grid-cols-12 " >
-      <div class="bg-white rounded-lg shadow p-4 md:col-span-3 lg:col-span-3 " >
+      <div class="bg-white rounded-lg shadow p-4 md:col-span-3 lg:col-span-3 xl:col-span-2" >
         <Transition name="slide-fade" >
           <div v-if="transitionHelper"  class="w-full relative profileInformation">
             <div class="profileImage border-4 rounded-full border-gray-200 p-2 md:w-24 md:h-24 lg:w-32 lg:h-32 w-28 h-28 mx-auto bg-center bg-no-repeat bg-cover" :style=" 'background-image: url(' + localProfile +');' " ></div>
@@ -10,10 +10,22 @@
               {{ user.people.lastname + " " + user.people.firstname }}<br/>
               {{ user.people.enlastname + " " + user.people.enfirstname }}
             </div>
-            <div v-if="user.position != null" class=" my-2 " >តួនាទី ៖ {{ user.position.name }}</div>
-            <div v-if="user.organization != null" class=" my-2 " >អង្គភាព ៖ {{ user.organization.name }}</div>
-            <div v-if="user.officer != null" class=" my-2 " >អត្តលេខមន្ត្រី ៖ {{ $toKhmer( user.officer.code ) }}</div>
-            <div v-if="user.card != null" class=" my-2 " >លេខកាតមន្ត្រី ៖ {{ $toKhmer( user.card.number ) }}</div>
+            <div v-if="user.officer != null" class=" my-2 flex" >
+              <div class="w-20" >អត្តលេខមន្ត្រី</div>
+              <div class="flex-grow" >{{ $toKhmer( user.officer.code ) }}</div>
+            </div>
+            <div v-if="user.position != null" class=" my-2 flex" >
+              <div class="w-20" >តួនាទី</div>
+              <div class="flex-grow" >{{ user.position.name }}</div>
+            </div>
+            <div v-if="user.organization != null" class=" my-2 flex" >
+              <div class="w-20" >អង្គភាព</div>
+              <div class="flex-grow" >{{ user.organization.name }}</div>
+            </div>
+            <div v-if="user.card != null" class=" my-2 flex" >
+              <div class="w-20" >លេខកាតមន្ត្រី</div>
+              <div class="flex-grow" >{{ $toKhmer( user.card.number ) }}</div>
+            </div>
             <div class="uploader absolute md:-right-12 lg:-right-8 -right-8 -top-4 w-14 flex" >
               <input type="file" placeholder="ឯកសារយោង" @change="fileChange" class="hidden " id="referenceDocument" />
               <div class="cursor-pointer hover:border-green-500 flex flex-wrap"  >
@@ -49,7 +61,7 @@
           </div>
         </Transition>
       </div>
-      <div class="relative bg-white shadow rounded-lg p-4 md:col-span-7  lg:col-span-9" >
+      <div class="relative bg-white shadow rounded-lg p-4 md:col-span-7  lg:col-span-9 xl:col-span-10" >
         <n-tabs type="line" animated>
           <n-tab-pane name="background" tab="ព័តមានផ្ទាល់ខ្លួន">
             <div class="my-4 relative">

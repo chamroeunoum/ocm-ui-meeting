@@ -170,7 +170,11 @@ export default {
           roles: [
             // 1, // Super
             2, // Administrator
+<<<<<<< HEAD
             3, 14 ,// backend
+=======
+            3, // backend
+>>>>>>> fdf6f66d19529947acc89c1668c7729c3340a704
           ]
       },
       // {
@@ -181,7 +185,11 @@ export default {
       //     roles: [
       //       1, // Super
       //       2, // Administrator
+<<<<<<< HEAD
       //       3, 14 ,// backend
+=======
+      //       3, // backend
+>>>>>>> fdf6f66d19529947acc89c1668c7729c3340a704
       //     ]
       // },
     ])

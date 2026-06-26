@@ -78,42 +78,42 @@ export default {
                 //         // 5 // Customer
                 //     ]
                 // },
-                {
-                    url: '/archive' ,
-                    icon: 'md-document' ,
-                    name: 'សាស្ត្រាច្បាប់',
-                    roles: [
-                        1, // Admin
-                        2, // Super
-                        3, // Auditor
-                        // 4, // Member
-                        // 5 // Customer
-                    ]
-                },
-                {
-                    url: '/task' ,
-                    icon: 'md-list' ,
-                    name: 'កិច្ចការ',
-                    roles: [
-                        1, // Admin
-                        // 2, // Super
-                        // 3, // Auditor
-                        // 4, // Member
-                        // 5 // Customer
-                    ]
-                },
-                {
-                    url: '/user' ,
-                    icon: 'ios-contacts-outline' ,
-                    name: 'គណនី',
-                    roles: [
-                        1, // Admin
-                        // 2, // Super
-                        // 3, // Auditor
-                        // 4, // Member
-                        // 5 // Customer
-                    ]
-                },
+                // {
+                //     url: '/archive' ,
+                //     icon: 'md-document' ,
+                //     name: 'សាស្ត្រាច្បាប់',
+                //     roles: [
+                //         1, // Admin
+                //         2, // Super
+                //         3, // Auditor
+                //         // 4, // Member
+                //         // 5 // Customer
+                //     ]
+                // },
+                // {
+                //     url: '/task' ,
+                //     icon: 'md-list' ,
+                //     name: 'កិច្ចការ',
+                //     roles: [
+                //         1, // Admin
+                //         // 2, // Super
+                //         // 3, // Auditor
+                //         // 4, // Member
+                //         // 5 // Customer
+                //     ]
+                // },
+                // {
+                //     url: '/user' ,
+                //     icon: 'ios-contacts-outline' ,
+                //     name: 'គណនី',
+                //     roles: [
+                //         1, // Admin
+                //         // 2, // Super
+                //         // 3, // Auditor
+                //         // 4, // Member
+                //         // 5 // Customer
+                //     ]
+                // },
                 {
                     url: '/profile' ,
                     icon: 'ios-contact-outline' ,
@@ -126,30 +126,30 @@ export default {
                         5 // Customer
                     ]
                 },
-                {
-                    url: '/news' ,
-                    icon: 'ios-notifications-outline' ,
-                    name: 'ជូនដំណឹង',
-                    roles: [
-                        1, // Admin
-                        2, // Super
-                        3, // Auditor
-                        4, // Member
-                        5 // Customer
-                    ]
-                },
-                {
-                    url: '/subscriptions' ,
-                    icon: 'ios-cash-outline' ,
-                    name: 'ការជាវ',
-                    roles: [
-                        1, // Admin
-                        2, // Super
-                        3, // Auditor
-                        4, // Member
-                        5 // Customer
-                    ]
-                }
+                // {
+                //     url: '/news' ,
+                //     icon: 'ios-notifications-outline' ,
+                //     name: 'ជូនដំណឹង',
+                //     roles: [
+                //         1, // Admin
+                //         2, // Super
+                //         3, // Auditor
+                //         4, // Member
+                //         5 // Customer
+                //     ]
+                // },
+                // {
+                //     url: '/subscriptions' ,
+                //     icon: 'ios-cash-outline' ,
+                //     name: 'ការជាវ',
+                //     roles: [
+                //         1, // Admin
+                //         2, // Super
+                //         3, // Auditor
+                //         4, // Member
+                //         5 // Customer
+                //     ]
+                // }
             ] ,
             /** End app metadata */
             toggleApps: false,

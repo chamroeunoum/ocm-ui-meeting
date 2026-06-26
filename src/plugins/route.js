@@ -111,72 +111,72 @@ export const getRoutes = () => {
             //         // transition: 'fade'
             //     }
             // },
-            {
-                name: 'Attendant',
-                path: '/attendants' ,
-                redirect: to => {
-                    return '/attendants/noshift'
-                }
-            },
-            {
-            name: 'AttendantShift',
-            path: '/attendants',
-            component: AttendantShiftComponent ,
-                meta: { 
-                    transition: 'slide-right' ,
-                    requiresAuth: true,
-                    is_admin : true
-                },
-                children: [
-                    {
-                        name: "AttendantShiftList" ,
-                        path: '' ,
-                        component: AttendantShiftDayComponent
-                    },
-                    {
-                        name: "AttendantShiftList" ,
-                        path: 'shift' ,
-                        component: AttendantShiftDayComponent
-                    },
-                    {
-                        name: "AttendantShiftMonth" ,
-                        path: 'month' ,
-                        component: AttendantShiftListComponent
-                    },
-                    {
-                        name: "AttendantShiftDay" ,
-                        path: 'today' ,
-                        component: AttendantShiftDayComponent
-                    }
-                ]
-            },
-            {
-                name: 'AttendantNoShift',
-                path: '/attendants/noshift',
-                component: AttendantNoShiftComponent ,
-                meta: { 
-                    transition: 'slide-right' ,
-                    requiresAuth: true,
-                    is_admin : true
-                },
-                children: [
-                    {
-                        name: "AttendantNoShiftList" ,
-                        path: '' ,
-                        component: AttendantNoShiftDayComponent
-                    },
-                    {
-                        name: "AttendantNoShiftMonth" ,
-                        path: 'month' ,
-                        component: AttendantNoShiftListComponent
-                    },
-                    {
-                        name: "AttendantNoShiftDay" ,
-                        path: 'today' ,
-                        component: AttendantNoShiftDayComponent
-                    }
-                ]
-            },
+            // {
+            //     name: 'Attendant',
+            //     path: '/attendants' ,
+            //     redirect: to => {
+            //         return '/attendants/noshift'
+            //     }
+            // },
+            // {
+            // name: 'AttendantShift',
+            // path: '/attendants',
+            // component: AttendantShiftComponent ,
+            //     meta: { 
+            //         transition: 'slide-right' ,
+            //         requiresAuth: true,
+            //         is_admin : true
+            //     },
+            //     children: [
+            //         {
+            //             name: "AttendantShiftList" ,
+            //             path: '' ,
+            //             component: AttendantShiftDayComponent
+            //         },
+            //         {
+            //             name: "AttendantShiftList" ,
+            //             path: 'shift' ,
+            //             component: AttendantShiftDayComponent
+            //         },
+            //         {
+            //             name: "AttendantShiftMonth" ,
+            //             path: 'month' ,
+            //             component: AttendantShiftListComponent
+            //         },
+            //         {
+            //             name: "AttendantShiftDay" ,
+            //             path: 'today' ,
+            //             component: AttendantShiftDayComponent
+            //         }
+            //     ]
+            // },
+            // {
+            //     name: 'AttendantNoShift',
+            //     path: '/attendants/noshift',
+            //     component: AttendantNoShiftComponent ,
+            //     meta: { 
+            //         transition: 'slide-right' ,
+            //         requiresAuth: true,
+            //         is_admin : true
+            //     },
+            //     children: [
+            //         {
+            //             name: "AttendantNoShiftList" ,
+            //             path: '' ,
+            //             component: AttendantNoShiftDayComponent
+            //         },
+            //         {
+            //             name: "AttendantNoShiftMonth" ,
+            //             path: 'month' ,
+            //             component: AttendantNoShiftListComponent
+            //         },
+            //         {
+            //             name: "AttendantNoShiftDay" ,
+            //             path: 'today' ,
+            //             component: AttendantNoShiftDayComponent
+            //         }
+            //     ]
+            // },
             {
                 name: 'Meeting' ,
                 path: '/meetings',
@@ -194,6 +194,7 @@ export const getRoutes = () => {
                     }
                 ]
             },
+<<<<<<< HEAD
             {
                 name: 'Task',
                 path: '/tasks',
@@ -245,6 +246,59 @@ export const getRoutes = () => {
                     }
                 ]
             },
+=======
+            // {
+            //     name: 'Task',
+            //     path: '/tasks',
+            //     component: TaskComponent ,
+            //     meta: { 
+            //         transition: 'slide-right' ,
+            //         requiresAuth: true,
+            //         is_admin : true
+            //     },
+            //     children: [
+            //         {
+            //             name: "TaskList" ,
+            //             path: '' ,
+            //             component: TaskListComponent
+            //         }
+            //     ]
+            // },
+            // {
+            //     name: 'Card',
+            //     path: '/cards',
+            //     component: CardComponent ,
+            //     meta: { 
+            //         transition: 'slide-right' ,
+            //         requiresAuth: true,
+            //         is_admin : true
+            //     },
+            //     children: [
+            //         {
+            //             name: "CardInfoComponent" ,
+            //             path: '' ,
+            //             component: CardInfoComponent
+            //         }
+            //     ]
+            // },
+            // {
+            //     name: 'Folder' ,
+            //     path: '/folders',
+            //     component: FolderComponent ,
+            //     meta: { 
+            //         transition: 'slide-right' ,
+            //         requiresAuth: true,
+            //         is_admin : true
+            //     },
+            //     children: [
+            //         {
+            //             name: "FolderThumbnailComponent" ,
+            //             path: '' ,
+            //             component: FolderThumbnailComponent
+            //         }
+            //     ]
+            // },
+>>>>>>> fdf6f66d19529947acc89c1668c7729c3340a704
             // {
             //     name: 'Regulator' ,
             //     path: '/regulators',
