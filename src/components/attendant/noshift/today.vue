@@ -5,7 +5,8 @@
       <div class="flex-grow action-buttons flex-row-reverse flex">
         <div class="mt-0 ml-2 flex flex-wrap flex-row-reverse ">
           <div v-if=" currentTimeslot != null && ( currentTimeslot != null )" class="invisible sm:visible md:visible lg:visible xl:visible px-2 leading-8 rounded text-blue-600 mr-2 ">អ្នកកំពុងនៅក្នុងវេន ៖ {{ $toKhmer( currentTimeslot.title + " " + currentTimeslot.start + " ដល់ " + currentTimeslot.end ) }}</div>
-          <div v-if=" currentTimeslot == null " class="h-8 p-2 leading-4 rounded-full mr-2 bg-white border border-blue-500 text-blue-500 cursor-pointer " @click="checkin" >{{ isCheckin == true ? 'ចុះវត្តមានចេញ' : 'ចុះវត្តមានចូល' }}</div>
+          <!-- <div v-if=" currentTimeslot == null " class="h-8 p-2 leading-4 rounded-full mr-2 bg-white border border-blue-500 text-blue-500 cursor-pointer " @click="checkin" >{{ isCheckin == true ? 'ចុះវត្តមានចេញ' : 'ចុះវត្តមានចូល' }}</div> -->
+          <div class="h-8 p-2 leading-4 rounded-full mr-2 bg-white border border-blue-500 text-blue-500 cursor-pointer " @click="checkAttendant" >ចុះវត្តមាន</div>
           <div v-if=" currentTimeslot == null && ( activeTimeslot != null ) " class="invisible sm:visible md:visible lg:visible xl:visible px-2 leading-8 rounded text-blue-600 mr-2 ">ពេលនេះគឺវេន ៖ {{ activeTimeslot.title + " " + activeTimeslot.start + " ដល់ " + activeTimeslot.end }}</div>
           <div class="invisible sm:visible md:visible lg:visible xl:visible p-2 leading-4 " >
             <digital-clock />
@@ -20,10 +21,10 @@
     <!-- Table of crud -->
     <div class="vcb-table-panel flex flex-wrap ">
       <div v-if=" table.records.matched instanceof Object " class="w-4/5 mx-auto my-8 flex flex-wrap justify-between" >
-        <div class="l font-moul leading-7 text-blue-500" >{{  "ចំនួនថ្ងៃធ្វើការសរុប" }}<br/>{{ Object.keys(table.records.matched).length  }} ថ្ងៃ</div>
-        <div class=" font-moul leading-7 text-blue-500" >{{  "ចំនួនម៉ោងត្រូវធ្វើការសរុប" }}<br/>{{ Object.values(timeslots).map( ( tm ) => parseInt( tm.minutes ) ).reduce( (acc,val) => {return acc + val } , 0 ) }} នាទី</div>
-        <div class=" font-moul leading-7 text-green-500" >{{  "ចំនួនម៉ោងបានធ្វើការសរុប" }}<br/>{{ Object.values(table.records.matched).map( ( att ) => parseInt( att.calculateTime.total ) ).reduce( (acc,val) => {return acc + val } , 0 ) }} នាទី</div>
-        <div class=" font-moul leading-7 text-yellow-500" >{{  "ចំនួនម៉ោងធ្វើការសរុប ខ្វះ(-) ឬ លើស(+)" }}<br/>{{ ( Object.values(timeslots).map( ( tm ) => parseInt( tm.minutes ) ).reduce( (acc,val) => {return acc + val } , 0 ) ) - ( Object.values(table.records.matched).map( ( att ) => parseInt( att.calculateTime.total ) ).reduce( (acc,val) => {return acc + val } , 0 ) ) }} នាទី</div>
+        <div class="l font-moul leading-7 text-blue-500" >{{  "ចំនួនថ្ងៃធ្វើការសរុប" }}<br/>{{ $toKhmer( Object.keys(table.records.matched).length ) }} ថ្ងៃ</div>
+        <div class=" font-moul leading-7 text-blue-500" >{{  "ចំនួនម៉ោងត្រូវធ្វើការសរុប" }}<br/>{{ $toKhmer( Object.values(timeslots).map( ( tm ) => parseInt( tm.minutes ) ).reduce( (acc,val) => {return acc + val } , 0 ) ) }} នាទី</div>
+        <div class=" font-moul leading-7 text-green-500" >{{  "ចំនួនម៉ោងបានធ្វើការសរុប" }}<br/>{{ $toKhmer( Object.values(table.records.matched).map( ( att ) => parseInt( att.calculateTime.total ) ).reduce( (acc,val) => {return acc + val } , 0 ) ) }} នាទី</div>
+        <div class=" font-moul leading-7 text-yellow-500" >{{  "ចំនួនម៉ោងធ្វើការសរុប ខ្វះ(-) ឬ លើស(+)" }}<br/>{{ $toKhmer( Object.values(timeslots).map( ( tm ) => parseInt( tm.minutes ) ).reduce( (acc,val) => {return acc + val } , 0 ) ) - ( Object.values(table.records.matched).map( ( att ) => parseInt( att.calculateTime.total ) ).reduce( (acc,val) => {return acc + val } , 0 ) ) }} នាទី</div>
       </div>
       <Transition name="slide-fade" >
         <div v-if=" table.records.matched instanceof Object " class="w-4/5 mx-auto flex flex-wrap justify-between" >
@@ -38,23 +39,53 @@
               <div v-for="(day, index) in daysOfMonth" :key='index' class="w-full" >
                 <div v-if="table.records.matched[ day.date ] != undefined" class="flex day border-b border-gray-200 p-4" :style=" 'color: ' + ( daysOfWeek.find( (dow ) => dow.number == day.number ).color.hexa ) + '; ' " >
                   <div class="day-number w-40 p-4 font-kantumruy">
-                    <div class="font-bold text-xl">{{ table.records.matched[ day.date ].date.split('-')[2] }}</div>
+                    <div class="font-bold text-xl">{{ $toKhmer( table.records.matched[ day.date ].date.split('-')[2] ) }}</div>
                     <div class="text-lg font-moul">{{ daysOfWeek.find( (dow ) => dow.number == day.number ).name.kh }}</div>
                   </div>
                   <div class="flex-grow p-4" >
                     <table class="w-full" >
-                      <tr class="" >
+                      <thead>
+                        <tr class="" >
                         <td class="font-kantumruy py-1 text-left font-bold">វេន</td>
                         <td class="font-kantumruy py-1 text-left font-bold">ចូល</td>
                         <td class="font-kantumruy py-1 text-left font-bold">ចេញ</td>
                         <td class="font-kantumruy py-1 text-right font-bold">សរុប</td>
                       </tr>
-                      <tr v-for="(ct , ctIndex) in table.records.matched[ day.date ].calculateTime.checktimes" :key="ctIndex">
-                        <td class=" py-1 text-left " >{{ $toKhmer( ctIndex + 1 ) }}</td>
-                        <td class=" py-1 text-left " >{{ $toKhmer( ct.in.checktime ) }}</td>
-                        <td class=" py-1 text-left " >{{ ct.out != null ? $toKhmer( ct.out.checktime ) : '' }}</td>
-                        <td class=" py-1 text-right font-bold" >{{ $toKhmer( ct.spenttime ) }}</td>
-                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(ct , ctIndex) in table.records.matched[ day.date ].calculateTime.checktimes" :key="ctIndex">
+                          <td class=" py-1 text-left " >{{ $toKhmer( ct.timeslot != undefined ? ct.timeslot.title + ' ' + ct.timeslot.start +'-'+ct.timeslot.end : (ctIndex + 1 ) ) }}</td>
+                          <td class=" py-1 text-left " >
+                            {{ ( ct.in.organization != null ? ct.in.organization.name + ' - ' : '' ) }}
+                            {{ $toKhmer( ct.in.checktime ) }}
+                            <svg 
+                              v-if="parseFloat( ct.in.lat ) && parseFloat( ct.in.lng ) " 
+                              @click="openGoogleMap( ct.in.lat , ct.in.lng )"
+                              class="w-4 h-4 text-blue-500 ml-2 cursor-pointer inline-flex mb-1 " 
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"></circle><path d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"></path></g></svg>
+                            <svg 
+                              v-if="ct.in.photo == true " 
+                              @click="viewPhoto(ct.in.id)"
+                              class="w-4 h-4 text-blue-500 ml-2 cursor-pointer inline-flex mb-1 " 
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16"><g fill="none"><path d="M11 8a3 3 0 1 1-6 0a3 3 0 0 1 6 0zm-1 0a2 2 0 1 0-4 0a2 2 0 0 0 4 0zM6.618 2a1.5 1.5 0 0 0-1.342.83L4.691 4H4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-.691l-.585-1.17A1.5 1.5 0 0 0 9.382 2H6.618zm-.447 1.276A.5.5 0 0 1 6.618 3h2.764a.5.5 0 0 1 .447.276l.724 1.448A.5.5 0 0 0 11 5h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1a.5.5 0 0 0 .447-.276l.724-1.448z" fill="currentColor"></path></g></svg>
+                          </td>
+                          <td class=" py-1 text-left" >
+                            {{ ct.out != null ? ( ( ct.out.organization != null ? ct.out.organization.name + ' - ' : ' ' ) ) : ' ' }}
+                            {{ $toKhmer( ct.out != null ? ( ct.out.checktime ) : ' ' ) }}
+                            <svg 
+                              v-if=" ct.out != null && ct.out.lat != null && ct.out.lng != null " 
+                              @click="openGoogleMap( ct.out.lat , ct.out.lng )"
+                              class="w-4 h-4 text-blue-500 ml-2 cursor-pointer inline-flex mb-1 " 
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"></circle><path d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"></path></g></svg>
+                            <svg 
+                              v-if="ct.out != null && ct.out.photo == true " 
+                              @click="viewPhoto(ct.out.id)"
+                              class="w-4 h-4 text-blue-500 ml-2 cursor-pointer inline-flex mb-1 " 
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16"><g fill="none"><path d="M11 8a3 3 0 1 1-6 0a3 3 0 0 1 6 0zm-1 0a2 2 0 1 0-4 0a2 2 0 0 0 4 0zM6.618 2a1.5 1.5 0 0 0-1.342.83L4.691 4H4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-.691l-.585-1.17A1.5 1.5 0 0 0 9.382 2H6.618zm-.447 1.276A.5.5 0 0 1 6.618 3h2.764a.5.5 0 0 1 .447.276l.724 1.448A.5.5 0 0 0 11 5h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1a.5.5 0 0 0 .447-.276l.724-1.448z" fill="currentColor"></path></g></svg>
+                          </td>
+                          <td class=" py-1 text-right font-bold" >{{ $toKhmer( ct.spenttime ) }}</td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                   <div class=" w-40 p-4 font-bold text-xl " >{{ $toKhmer( table.records.matched[ day.date ].calculateTime.total ) }}</div>
@@ -665,6 +696,27 @@ export default {
       }
     }
 
+    function checkAttendant(){
+      store.dispatch('attendant/checkAttendant').then( res => {
+        if( res.data.ok ){
+          message.success(res.data.message)
+        }else{
+          notify.error({
+          title: 'ពិនិត្យវត្តមាន ចូល និង ចេញ' ,
+          content: res.data.message ,
+          duration: 3000
+        })  
+        }
+      }).catch( err => {
+        notify.error({
+          title: 'ពិនិត្យវត្តមាន ចូល និង ចេញ' ,
+          content: err.response != undefined && err.response.data != undefined ? err.response.data.message : "មានបញ្ហាពិនិត្យវត្តមាន។" ,
+          duration: 3000
+        })
+        console.log( err )
+      })
+      getRecords()
+    }
     /**
      * Initial the data
      */
@@ -713,7 +765,8 @@ export default {
       checkin ,
       checkout,
       dateFormat ,
-      isCheckin
+      isCheckin ,
+      checkAttendant
     }
   }
 }

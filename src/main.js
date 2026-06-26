@@ -6,7 +6,8 @@ import VueAxios from 'vue-axios'
 
 import VueQrcodeReader from "vue3-qrcode-reader"
 
-import KhmerNumber from './plugins/KhmerNumber.js'
+import KhmerNumber from './plugins/kh/number.js'
+import KhmerDate from './plugins/kh/date.js'
 
 import NaiveUI from 'naive-ui'
 
@@ -41,6 +42,7 @@ app.use(NaiveUI)
 app.use(HtmlToPaper)
 app.use(pinia)
 app.use(KhmerNumber)
+app.use(KhmerDate)
 app.use(store)
 app.use(router)
 app.mount('#app')

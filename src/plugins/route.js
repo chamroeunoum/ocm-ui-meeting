@@ -92,7 +92,7 @@ export const getRoutes = () => {
                 name: "EmptyURI" ,
                 redirect: to => {
                     // return '/dashboard'
-                    return '/cards'
+                    return '/dashboard'
                 }
             },
             { 
@@ -100,7 +100,7 @@ export const getRoutes = () => {
                 name: "RootURI" ,
                 redirect: to => {
                     // return '/dashboard'
-                    return '/cards'
+                    return '/dashboard'
                 }
             },
             // {
@@ -245,23 +245,23 @@ export const getRoutes = () => {
                     }
                 ]
             },
-            {
-                name: 'Regulator' ,
-                path: '/regulators',
-                component: RegulatorComponent ,
-                meta: { 
-                    transition: 'slide-right' ,
-                    requiresAuth: true,
-                    is_admin : true
-                },
-                children: [
-                    {
-                        name: "RegulatorThumbnailComponent" ,
-                        path: '' ,
-                        component: RegulatorThumbnailComponent
-                    }
-                ]
-            },
+            // {
+            //     name: 'Regulator' ,
+            //     path: '/regulators',
+            //     component: RegulatorComponent ,
+            //     meta: { 
+            //         transition: 'slide-right' ,
+            //         requiresAuth: true,
+            //         is_admin : true
+            //     },
+            //     children: [
+            //         {
+            //             name: "RegulatorThumbnailComponent" ,
+            //             path: '' ,
+            //             component: RegulatorThumbnailComponent
+            //         }
+            //     ]
+            // },
             // {
             //     name: "GlobalSharedRegulator" ,
             //     path: '/globalshare/:serial' ,

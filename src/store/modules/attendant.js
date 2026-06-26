@@ -64,7 +64,10 @@ const actions = {
   },
   async getAttendant({ state, commit, rootState },params) {
     return await crud.read(import.meta.env.VITE_API_SERVER+"/"+state.model.name+"/getattendantbyemailorphone/"+params.term+'/'+params.type)
-  }
+  },
+  async checkAttendant({ state, commit, rootState },params) {
+    return await crud.create(import.meta.env.VITE_API_SERVER+"/"+state.model.name+"/checkattendant",params)
+  },
 }
 
 // mutations
